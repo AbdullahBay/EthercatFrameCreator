@@ -1,6 +1,7 @@
 ﻿
 
 using PacketDotNet;
+using System.Collections.Generic;
 
 namespace EthercatFuzzer
 {
@@ -10,15 +11,23 @@ namespace EthercatFuzzer
         {
             InitializeComponent();
         }
-        Class1 c = new Class1();
+        EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
+            frame = new EthernetSender();
+            List<string> deviceList = EthernetSender.getDeviceList();
+            foreach (var item in deviceList)
+            {
+                cmbDeviceList.Items.Add(item);
+            }
             
         }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            c.gonder();
+            
+            frame.Gonder(100,cmbDeviceList.SelectedIndex);
         }
+
     }
 }

@@ -5,6 +5,8 @@ using EtherCATLib;
 
 namespace EthercatFuzzer
 {
+   //////Silinecek taşındı
+
     class Class1
     {
         static public byte [] ethernetBytes= new byte[160];
