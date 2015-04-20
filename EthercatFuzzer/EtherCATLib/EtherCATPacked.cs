@@ -54,7 +54,7 @@ namespace EtherCATLib
 
         public byte[] getBytes()
         {
-            throw new NotImplementedException();
+            return new byte[160];
         }
     }
 }
