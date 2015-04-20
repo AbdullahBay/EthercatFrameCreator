@@ -1,6 +1,7 @@
 ﻿using PacketDotNet;
 using PacketDotNet.Utils;
 using SharpPcap;
+using EtherCATLib;
 
 namespace EthercatFuzzer
 {
@@ -16,7 +17,7 @@ namespace EthercatFuzzer
             // Retrieve all capture devices
             var devices = CaptureDeviceList.Instance;
             // devivelerden kullandığını seç
-            selecteddev = devices[1];
+            selecteddev = devices[0];
             // göndermek için aç
             selecteddev.Open();
             // hedef mec oluştur son byteyi değiştiriyor:19
@@ -24,6 +25,7 @@ namespace EthercatFuzzer
             var desMACBytes=desMAC.GetAddressBytes();
             desMACBytes[5]=19;
             //paketi oluştur
+            System.Net.NetworkInformation.PhysicalAddress destmac = new System.Net.NetworkInformation.PhysicalAddress(desMACBytes);
             ethernet=new EthernetPacket(selecteddev.MacAddress,new System.Net.NetworkInformation.PhysicalAddress(desMACBytes),EthernetPacketType.EtherCatProtocol);
             // data oluştur
             for (int i = 0; i < 100; i++)
@@ -31,7 +33,9 @@ namespace EthercatFuzzer
                 ethernetBytes[i] = 100;
             }
             // datayı pakete ekle
-            ethernet.PayloadData = ethernetBytes;
+
+            EtherCATPacked ethercatpaketi=new EtherCATPacked();
+            ethernet.PayloadData = ethercatpaketi.getBytes();
             // 100 kere gönder
             
             
