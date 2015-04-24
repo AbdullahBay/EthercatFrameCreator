@@ -47,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EtherCATDatagram.cs" />
+    <Compile Include="EtherCATHeader.cs" />
     <Compile Include="EtherCATPacked.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
