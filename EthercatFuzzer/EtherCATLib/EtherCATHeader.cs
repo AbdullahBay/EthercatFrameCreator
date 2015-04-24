@@ -34,26 +34,22 @@ namespace EtherCATLib
 
          public EtherCATHeader(Int16 ELength, byte EReserved, byte EType)
          {
-             ELength = 62;
-             EType = 1;
-             EReserved = 0;
 
              this.ELength = ELength;
              this.EReserved = EReserved;
              this.EType = EType;
 
-            
-           //   Int16 hd = EReserved * Math.Pow(2, 11) + ELength + EType * Math.Pow(2, 12);
-             //byte hd=0;
-             //hd = EReserved.ToString(byte)*Math.Pow(2, 11) + ELength + EType * Math.Pow(2, 12);
-
-
-
 
          }
-      
-      
-        
-        
+
+
+
+         internal byte[] GetBytes()
+         {
+             int headerAsInt = EReserved * TwoPow.eleven + ELength + EType * TwoPow.twelve;
+             byte[] headerAsByte = BitConverter.GetBytes(headerAsInt);
+
+             return new byte[] { headerAsByte[0], headerAsByte[1] };
+         }
     }
 }

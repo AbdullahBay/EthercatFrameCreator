@@ -19,6 +19,9 @@ namespace EtherCATLib
             eight = 264,
             nine = 512,
             ten = 1024,
-            eleven = 2048;
+            eleven = 2048,
+            twelve = 4096;
+            //sixteen = 65536; // burası 16 bit lilk ksısm 
+          
     }
 }

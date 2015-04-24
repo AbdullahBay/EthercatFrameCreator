@@ -8,7 +8,9 @@ namespace EtherCATLib
 {
     public class EtherCATPacked
     {
-        
+        EtherCATHeader Header = new EtherCATHeader(62,0,1);
+
+
        
         
         
@@ -21,8 +23,11 @@ namespace EtherCATLib
         public byte[] getBytes()
         {
             byte []etherCATDataAsBytes =new byte[160];
+            byte[] ethercatHeader = Header.GetBytes();
+            etherCATDataAsBytes[0] = ethercatHeader[0];
+            etherCATDataAsBytes[1] = ethercatHeader[1];
             // data alanı örnek vei ile dolduruluyor
-            for (int i = 0; i < etherCATDataAsBytes.Length; i++)
+            for (int i = 2; i < etherCATDataAsBytes.Length; i++)
             {
                 etherCATDataAsBytes[i] = 100;
             }

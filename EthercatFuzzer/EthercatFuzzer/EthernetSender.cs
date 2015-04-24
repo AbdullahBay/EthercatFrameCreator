@@ -63,6 +63,8 @@ namespace EthercatFuzzer
             // Retrieve all capture devices
             var devices = CaptureDeviceList.Instance;
             // devivelerden kullandığını seç
+            //TODO:Seçilmediyse kontrol et
+
             Selecteddev = devices[selectedDeviceIndex];
             // kullanmak için aç
             Selecteddev.Open();
