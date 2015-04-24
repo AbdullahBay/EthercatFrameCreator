@@ -8,6 +8,8 @@ namespace EtherCATLib
 {
     class DatagramHeader
     {
+        //TODO: public private isimlendirmesindeki değişiklik sadece baş harfle alakalıdır. Diğer harfler değiştirilmeyecekrtir örn:SlaveAddress ve slaveAddress şeklinde
+        // TODO: sadece kelimlerin baş harfleri büyük olur alt tre kullanılmaz. Standardın adını hatırlayamadım :(
         private Int16 slave_address;
 
         public Int16 Slave_Address
@@ -64,6 +66,7 @@ namespace EtherCATLib
             get { return more; }
             set { more = value; }
         }
+        //TODO: irq ve Irq olmalı veya IRQ iRQ tarızında.
         private byte irq;
 
         public byte IRQ
@@ -71,7 +74,14 @@ namespace EtherCATLib
             get { return more; }
             set { more = value; }
         }
+        /// <summary>
+        /// PArametresiz kurucu 
+        /// TODO: parametersiz kurucununda kullanılabilmesi için set getler yazılmalı.
+        /// </summary>
+        public DatagramHeader()
+        {
 
+        }
         public DatagramHeader(byte CMD,byte IDX,Int16 Slave_Address, Int16 Offset_Address,byte LEN, byte RES,byte CR, byte MORE,byte IRQ)
 
          {
@@ -86,11 +96,26 @@ namespace EtherCATLib
              this.IRQ = IRQ;
 
          }
-        //public byte[] GetBytes()
-        //{
-        //    //byte[] returnByteArray=new byte[8]  ;
-        //    //returnByteArray[0]=
-        //    //int datagramheader= CMD+IDX*TwoPow.eight+Slave_Address*TwoPow.
-        //}
+        //TODO: fonksiyon tammalanacak
+        public byte[] GetBytes()
+        {
+            byte []tempByteArray;
+            byte[] returnByteArray=new byte[8]  ;
+            // ilk byte buraya gelecek;
+            returnByteArray[0]=IDX;
+            //sonra diğer byte
+            // sonra ki 2 byteye addresin ilk kısmı
+            //burayada aderisin ikinci ksımı: örenk olarak yapıyorum;
+            tempByteArray=BitConverter.GetBytes(Offset_Address);
+            returnByteArray[4] = tempByteArray[0];
+            returnByteArray[5] = tempByteArray[1];
+            /*sonra gelen 16 bit bir gurup olduğu için önce jarpma işlemi ile 16 bit 
+             * tammalanacak bir int oluşturulup ilk 2 bytesi gerekli byteye atanacak*/
+            //int datagramheader= CMD+IDX*TwoPow.eight+Slave_Address*Two
+            // sonolarak 8 bitlik alanzaten bytta tutuluyor oda oraya atuılacak.
+
+            // ve 8 bytelik alanoluşturulduğu için döndürülecek.
+            return returnByteArray;
+        }
     }
 }

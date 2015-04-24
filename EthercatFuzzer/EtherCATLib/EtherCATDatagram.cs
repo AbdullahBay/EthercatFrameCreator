@@ -8,6 +8,9 @@ namespace EtherCATLib
 {
     class EtherCATDatagram
     {
-        
+        //TODO: paramereleri verilecek
+        DatagramHeader Header = new DatagramHeader();
+
+        //TODO: get bytes array yazılacak;
     }
 }
