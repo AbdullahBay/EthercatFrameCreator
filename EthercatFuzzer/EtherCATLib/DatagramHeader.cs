@@ -109,9 +109,10 @@ namespace EtherCATLib
             returnByteArray[3] = tempByteArray[1];
             // sonra ki 2 byteye addresin ilk kısmı
             //burayada aderisin ikinci ksımı: örenk olarak yapıyorum;
+            //  fix: temp arraya yeni değişken döndüğü için sadece 0 ve 1 indisleri dolu olcak.
             tempByteArray=BitConverter.GetBytes(OffsetAddress);
-            returnByteArray[4] = tempByteArray[2];
-            returnByteArray[5] = tempByteArray[3];
+            returnByteArray[4] = tempByteArray[2]; // fix:[0]
+            returnByteArray[5] = tempByteArray[3];  
           //  Int16 dataheader=Idx*TwoPow.eight+SlaveAddress+OffsetAddress+
                 
              /*sonra gelen 16 bit bir gurup olduğu için önce çarpma işlemi ile 16 bit 
