@@ -11,7 +11,7 @@ namespace EthercatFuzzer
 {
     class EthernetSender
     {
-        static public byte [] ethernetBytes= new byte[1500];
+        static public byte [] ethernetBytes= new byte[100];
         static ByteArraySegment array = new ByteArraySegment(ethernetBytes);
         EthernetPacket ethernet;
         ICaptureDevice Selecteddev ;

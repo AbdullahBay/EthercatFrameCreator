@@ -97,10 +97,14 @@ namespace EtherCATLib
 
          }
         //TODO: fonksiyon tammalanacak
+        /// <summary>
+        /// 10 byte lık bir dizi döndürür.
+        /// </summary>
+        /// <returns>byte Array</returns>
         public byte[] GetBytes()
         {
             byte []tempByteArray;
-            byte[] returnByteArray=new byte[8]  ;
+            byte[] returnByteArray=new byte[10]  ;
 
             returnByteArray[0] = Cmd;// ilk byte buraya gelecek;
             returnByteArray[1] = Idx; //sonra diğer byte
@@ -111,10 +115,17 @@ namespace EtherCATLib
             //burayada aderisin ikinci ksımı: örenk olarak yapıyorum;
             //  fix: temp arraya yeni değişken döndüğü için sadece 0 ve 1 indisleri dolu olcak.
             tempByteArray=BitConverter.GetBytes(OffsetAddress);
-            returnByteArray[4] = tempByteArray[2]; // fix:[0]
-            returnByteArray[5] = tempByteArray[3];  
-          //  Int16 dataheader=Idx*TwoPow.eight+SlaveAddress+OffsetAddress+
-                
+            returnByteArray[4] = tempByteArray[0]; // fix:[0]
+            returnByteArray[5] = tempByteArray[1];
+
+            Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.twelve + More * TwoPow.thirteen;
+           tempByteArray = BitConverter.GetBytes(headerasint);
+           returnByteArray[6] = tempByteArray[0];
+           returnByteArray[7] = tempByteArray[1];
+            tempByteArray = BitConverter.GetBytes(Irq);
+            returnByteArray[8] = tempByteArray[0];
+            returnByteArray[9] = tempByteArray[1];
+         
              /*sonra gelen 16 bit bir gurup olduğu için önce çarpma işlemi ile 16 bit 
              * tammalanacak bir int oluşturulup ilk 2 bytesi gerekli byteye atanacak*/
             //int datagramheader= CMD+IDX*TwoPow.eight+Slave_Address*Two

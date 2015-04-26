@@ -41,6 +41,11 @@ namespace EtherCATLib
 
 
          }
+         public EtherCATHeader()
+         {
+
+
+         }
 
 
 

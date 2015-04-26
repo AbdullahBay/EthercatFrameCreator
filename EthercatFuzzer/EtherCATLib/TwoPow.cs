@@ -20,8 +20,11 @@ namespace EtherCATLib
             nine = 512,
             ten = 1024,
             eleven = 2048,
-            twelve = 4096;
-            //sixteen = 65536; // burası 16 bit lilk ksısm 
+            twelve = 4096,
+            thirteen=8192,
+            forteen=16384;
+
+             // burası 16 bit lilk ksısm 
         // 16 dan sonrası buraya gelecek 32 den daha fazla lazım olmayacak
         public static Int32
             sixteen = 0;
