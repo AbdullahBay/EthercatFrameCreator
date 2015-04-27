@@ -82,6 +82,10 @@ namespace EtherCATLib
         {
 
         }
+        public void SetMore()
+        {
+            More = 1;
+        }
         public DatagramHeader(byte Cmd,byte Idx,Int16 SlaveAddress, Int16 OffsetAddress,byte Len, byte Res,byte Cr, byte More,byte Irq)
 
          {
@@ -117,7 +121,7 @@ namespace EtherCATLib
             tempByteArray=BitConverter.GetBytes(OffsetAddress);
             returnByteArray[4] = tempByteArray[0]; // fix:[0]
             returnByteArray[5] = tempByteArray[1];
-
+            //fix: bu satırda hata mı var. morr çalışmıyor
             Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.twelve + More * TwoPow.thirteen;
            tempByteArray = BitConverter.GetBytes(headerasint);
            returnByteArray[6] = tempByteArray[0];

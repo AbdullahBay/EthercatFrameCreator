@@ -9,15 +9,37 @@ namespace EtherCATLib
     class EtherCATDatagram
     {
         //TODO: paramereleri verilecek
-        DatagramHeader Header = new DatagramHeader(8,25,0,46,1,0,0,0,1);
+        public DatagramHeader Header = new DatagramHeader(8, 25, 0, 46, 1, 0, 0, 0, 1) 
+        { 
+            Len=61
+        };
+        private byte[] data;
+
+        public byte[] Data
+        {
+            get { return data; }
+            set { data = value; }
+        }
+
         /// <summary>
         /// 10 bytelik dizi döndürür.
         /// </summary>
         /// <returns></returns>
         public byte[] GetBytes()
-        {   
-           byte[] ReturnByteArray= new byte[10];
-           ReturnByteArray = Header.GetBytes();
+        {
+            int DATALENGTH = 61;
+           byte[] ReturnByteArray= new byte[DATALENGTH+10];
+           byte[] tmp=Header.GetBytes();
+           int index = 0;
+            foreach (var item in tmp)
+            {
+	            ReturnByteArray[index++] =item ;
+            }
+            for (int i = 0; i < DATALENGTH; i++)
+            {
+                ReturnByteArray[index++] =255 ;
+            }
+           
            return ReturnByteArray;
 
         }

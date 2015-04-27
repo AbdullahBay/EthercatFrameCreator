@@ -13,16 +13,27 @@ namespace EtherCATLib
             EReserved=0,
             EType=1
         };
+
         List<EtherCATDatagram> Datagrams = new List<EtherCATDatagram>();
 
 
 
        public void PrepareEthercatData()
        {
-
-           EtherCATDatagram datagram = new EtherCATDatagram();
-
-           Datagrams.Add(datagram);
+           int DATAGRAMSAYISI=3;
+           for (int i = 0; i < DATAGRAMSAYISI; i++)
+           {
+               Datagrams.Add(new EtherCATDatagram());
+               if (DATAGRAMSAYISI-1!=i)
+               {
+                   
+                       Datagrams[Datagrams.Count-1].Header.SetMore();
+                       
+               }
+               
+               
+               
+           }
 
        
        }
@@ -37,7 +48,7 @@ namespace EtherCATLib
 
         public byte[] getBytes()
         {
-            byte []etherCATDataAsBytes =new byte[160];
+            byte []etherCATDataAsBytes =new byte[250];
             byte[] ethercatHeader = Header.GetBytes();
             etherCATDataAsBytes[0] = ethercatHeader[0];
             etherCATDataAsBytes[1] = ethercatHeader[1];

@@ -8,6 +8,7 @@ namespace EtherCATLib
 {
     public class TwoPow
     {
+        //TODO: değerleri kontrol et
         public static Int16
             one = 2,
             two = 4,
