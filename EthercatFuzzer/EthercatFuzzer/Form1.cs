@@ -25,6 +25,8 @@ namespace EthercatFuzzer
 
         private void button1_Click(object sender, System.EventArgs e)
         {
+            UIContract UIData = new UIContract();
+            //UIData.SelectedCmd=
             
             frame.Gonder(100,cmbDeviceList.SelectedIndex);
         }
