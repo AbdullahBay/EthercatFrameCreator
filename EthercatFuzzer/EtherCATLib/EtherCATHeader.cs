@@ -34,7 +34,8 @@ namespace EtherCATLib
 
          public EtherCATHeader(Int16 ELength, byte EReserved, byte EType)
          {
-
+             // TODO: resorved alanı normalde 0 olacak. 
+             //TODO lenghtler hep dataların lengthini alacak
              this.ELength = ELength;
              this.EReserved = EReserved;
              this.EType = EType;
