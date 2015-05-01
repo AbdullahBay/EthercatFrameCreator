@@ -39,34 +39,45 @@ namespace EtherCATLib
             set { cmd = value; }
         }
         private Int16 len;
-
+        //todo: leght hesapla
+        /// <summary>
+        /// Datagramın Data alnının  byte cinsinden uzunluğunu verir. 0-1486 byte
+        /// </summary>
         public Int16 Len
         {
             get { return len; }
             set { len = value; }
         }
         private byte res;
-
+        /// <summary>
+        /// 3 bitlik değer alır kabul edilen tek değer 0 dır.
+        /// </summary>
         public byte Res
         {
             get { return res; }
             set { res = value; }
         }
+        //todo: Cr ne yapıyor
+        
         private byte cr;
-
+        /// <summary>
+        /// 1 bitlik bir değer alır
+        /// </summary>
         public byte Cr
         {
             get { return cr; }
             set { cr = value; }
         }
-        private byte more;
-
+        private byte more = 1;
+        /// <summary>
+        /// Devamında datagram var ise 1 alır. varsayılan 1 dır.
+        /// </summary>
         public byte More
         {
             get { return more; }
             set { more = value; }
         }
-        //TODO: irq ve Irq olmalı veya IRQ iRQ tarızında.
+        //TODO: hocaya  sor. Bir etherrcat paketindeki tüm irq lar aynı gibi.
         private byte irq;
 
         public byte Irq

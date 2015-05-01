@@ -8,12 +8,15 @@ namespace EtherCATLib
 {
     public class EtherCATPacked
     {
+        //EtherCATData Data = new EtherCATData();
         EtherCATHeader Header = new EtherCATHeader(){
+            //TODO:legth bilgisi datagramların toplam byte sayısı ile doldurulacak.
             ELength=80,
             EReserved=0,
-            EType=1
+            EType=1 //TODO : ethercat typ alanında sadece 1 kabul ediyor
         };
 
+        
         List<EtherCATDatagram> Datagrams = new List<EtherCATDatagram>();
 
 
