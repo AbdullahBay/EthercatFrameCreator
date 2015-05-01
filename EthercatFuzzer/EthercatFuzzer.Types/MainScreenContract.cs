@@ -4,14 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EthercatFuzzer
+namespace EthercatFuzzer.Types
 {
-    public class UIContract
+    public class MainScreenContract
     {
-        //null atanmış ise random olduğu anlaşılacak.
-        private  int? selectedCmd;
+        public MainScreenContract()
+        {
 
-        public  int ? SelectedCmd
+        }
+        //null atanmış ise random olduğu anlaşılacak.
+        private int? selectedCmd;
+
+        public int? SelectedCmd
         {
             get { return selectedCmd; }
             set { selectedCmd = value; }
@@ -19,8 +23,5 @@ namespace EthercatFuzzer
 
         //propfull yaz taba bas
         
-        
-
-
     }
 }

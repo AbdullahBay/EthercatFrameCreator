@@ -2,6 +2,7 @@
 
 using PacketDotNet;
 using System.Collections.Generic;
+using EthercatFuzzer.Types;
 
 namespace EthercatFuzzer
 {
@@ -25,8 +26,8 @@ namespace EthercatFuzzer
 
         private void button1_Click(object sender, System.EventArgs e)
         {
-            UIContract UIData = new UIContract();
-            //UIData.SelectedCmd=
+            MainScreenContract MainScreenData = new MainScreenContract();
+            //MainScreenData.SelectedCmd=
             
             frame.Gonder(100,cmbDeviceList.SelectedIndex);
         }
