@@ -28,6 +28,11 @@ namespace EthercatFuzzer
         {
             MainScreenContract MainScreenData = new MainScreenContract();
             //MainScreenData.SelectedCmd=
+
+            // TODO: Contracktın gönderileceği gonksiyon yaılacak
+            // Ofonksiyon(MainScreenData);
+            
+
             
             frame.Gonder(100,cmbDeviceList.SelectedIndex);
         }
