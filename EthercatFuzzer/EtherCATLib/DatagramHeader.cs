@@ -132,7 +132,6 @@ namespace EtherCATLib
          
              /*sonra gelen 16 bit bir gurup olduğu için önce çarpma işlemi ile 16 bit 
              * tammalanacak bir int oluşturulup ilk 2 bytesi gerekli byteye atanacak*/
-            //int datagramheader= CMD+IDX*TwoPow.eight+Slave_Address*Two
             // sonolarak 8 bitlik alanzaten bytta tutuluyor oda oraya atuılacak.
 
             // ve 8 bytelik alanoluşturulduğu için döndürülecek.
