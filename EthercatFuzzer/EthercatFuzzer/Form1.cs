@@ -19,7 +19,7 @@ namespace EthercatFuzzer
             List<string> deviceList = EthernetSender.getDeviceList();
             foreach (var item in deviceList)
             {
-                cmbDeviceList.Items.Add(item);
+                cmb_DeviceList.Items.Add(item);
             }
             
         }
@@ -34,7 +34,17 @@ namespace EthercatFuzzer
             
 
             
-            frame.Gonder(100,cmbDeviceList.SelectedIndex);
+            frame.Gonder(100,cmb_DeviceList.SelectedIndex);
+        }
+
+        private void cmb_DeviceList_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+
+        }
+
+        private void lbl_DeviceList_Click(object sender, System.EventArgs e)
+        {
+
         }
 
     }

@@ -28,46 +28,150 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbDeviceList = new System.Windows.Forms.ComboBox();
+            this.btn_send = new System.Windows.Forms.Button();
+            this.lbl_DeviceList = new System.Windows.Forms.Label();
+            this.cmb_DeviceList = new System.Windows.Forms.ComboBox();
+            this.lbl_RepeatCount = new System.Windows.Forms.Label();
+            this.txt_RCount = new System.Windows.Forms.TextBox();
+            this.lbl_CMD = new System.Windows.Forms.Label();
+            this.cmb_cmd = new System.Windows.Forms.ComboBox();
+            this.lbl_SlaveAddress = new System.Windows.Forms.Label();
+            this.cmb_SAddress = new System.Windows.Forms.ComboBox();
+            this.lbl_OffsetAddress = new System.Windows.Forms.Label();
+            this.txt_OAddress = new System.Windows.Forms.TextBox();
+            this.lbl_Data = new System.Windows.Forms.Label();
+            this.txt_data = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // button1
+            // btn_send
             // 
-            this.button1.Location = new System.Drawing.Point(283, 92);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(152, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "100 kere gönder";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btn_send.Location = new System.Drawing.Point(292, 316);
+            this.btn_send.Name = "btn_send";
+            this.btn_send.Size = new System.Drawing.Size(152, 23);
+            this.btn_send.TabIndex = 0;
+            this.btn_send.Text = "SEND";
+            this.btn_send.UseVisualStyleBackColor = true;
+            this.btn_send.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // lbl_DeviceList
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(24, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Device List";
+            this.lbl_DeviceList.AutoSize = true;
+            this.lbl_DeviceList.Location = new System.Drawing.Point(27, 28);
+            this.lbl_DeviceList.Name = "lbl_DeviceList";
+            this.lbl_DeviceList.Size = new System.Drawing.Size(60, 13);
+            this.lbl_DeviceList.TabIndex = 1;
+            this.lbl_DeviceList.Text = "Device List";
+            this.lbl_DeviceList.Click += new System.EventHandler(this.lbl_DeviceList_Click);
             // 
-            // cmbDeviceList
+            // cmb_DeviceList
             // 
-            this.cmbDeviceList.FormattingEnabled = true;
-            this.cmbDeviceList.Location = new System.Drawing.Point(82, 25);
-            this.cmbDeviceList.Name = "cmbDeviceList";
-            this.cmbDeviceList.Size = new System.Drawing.Size(362, 21);
-            this.cmbDeviceList.TabIndex = 2;
+            this.cmb_DeviceList.FormattingEnabled = true;
+            this.cmb_DeviceList.Location = new System.Drawing.Point(141, 25);
+            this.cmb_DeviceList.Name = "cmb_DeviceList";
+            this.cmb_DeviceList.Size = new System.Drawing.Size(190, 21);
+            this.cmb_DeviceList.TabIndex = 2;
+            this.cmb_DeviceList.SelectedIndexChanged += new System.EventHandler(this.cmb_DeviceList_SelectedIndexChanged);
+            // 
+            // lbl_RepeatCount
+            // 
+            this.lbl_RepeatCount.AutoSize = true;
+            this.lbl_RepeatCount.Location = new System.Drawing.Point(27, 82);
+            this.lbl_RepeatCount.Name = "lbl_RepeatCount";
+            this.lbl_RepeatCount.Size = new System.Drawing.Size(73, 13);
+            this.lbl_RepeatCount.TabIndex = 3;
+            this.lbl_RepeatCount.Text = "Repeat Count";
+            // 
+            // txt_RCount
+            // 
+            this.txt_RCount.Location = new System.Drawing.Point(141, 75);
+            this.txt_RCount.Name = "txt_RCount";
+            this.txt_RCount.Size = new System.Drawing.Size(190, 20);
+            this.txt_RCount.TabIndex = 4;
+            // 
+            // lbl_CMD
+            // 
+            this.lbl_CMD.AutoSize = true;
+            this.lbl_CMD.Location = new System.Drawing.Point(27, 134);
+            this.lbl_CMD.Name = "lbl_CMD";
+            this.lbl_CMD.Size = new System.Drawing.Size(31, 13);
+            this.lbl_CMD.TabIndex = 5;
+            this.lbl_CMD.Text = "CMD";
+            // 
+            // cmb_cmd
+            // 
+            this.cmb_cmd.FormattingEnabled = true;
+            this.cmb_cmd.Location = new System.Drawing.Point(141, 126);
+            this.cmb_cmd.Name = "cmb_cmd";
+            this.cmb_cmd.Size = new System.Drawing.Size(190, 21);
+            this.cmb_cmd.TabIndex = 6;
+            // 
+            // lbl_SlaveAddress
+            // 
+            this.lbl_SlaveAddress.AutoSize = true;
+            this.lbl_SlaveAddress.Location = new System.Drawing.Point(27, 185);
+            this.lbl_SlaveAddress.Name = "lbl_SlaveAddress";
+            this.lbl_SlaveAddress.Size = new System.Drawing.Size(75, 13);
+            this.lbl_SlaveAddress.TabIndex = 7;
+            this.lbl_SlaveAddress.Text = "Slave Address";
+            // 
+            // cmb_SAddress
+            // 
+            this.cmb_SAddress.FormattingEnabled = true;
+            this.cmb_SAddress.Location = new System.Drawing.Point(141, 177);
+            this.cmb_SAddress.Name = "cmb_SAddress";
+            this.cmb_SAddress.Size = new System.Drawing.Size(190, 21);
+            this.cmb_SAddress.TabIndex = 8;
+            // 
+            // lbl_OffsetAddress
+            // 
+            this.lbl_OffsetAddress.AutoSize = true;
+            this.lbl_OffsetAddress.Location = new System.Drawing.Point(27, 239);
+            this.lbl_OffsetAddress.Name = "lbl_OffsetAddress";
+            this.lbl_OffsetAddress.Size = new System.Drawing.Size(76, 13);
+            this.lbl_OffsetAddress.TabIndex = 9;
+            this.lbl_OffsetAddress.Text = "Offset Address";
+            // 
+            // txt_OAddress
+            // 
+            this.txt_OAddress.Location = new System.Drawing.Point(141, 232);
+            this.txt_OAddress.Name = "txt_OAddress";
+            this.txt_OAddress.Size = new System.Drawing.Size(100, 20);
+            this.txt_OAddress.TabIndex = 10;
+            // 
+            // lbl_Data
+            // 
+            this.lbl_Data.AutoSize = true;
+            this.lbl_Data.Location = new System.Drawing.Point(30, 285);
+            this.lbl_Data.Name = "lbl_Data";
+            this.lbl_Data.Size = new System.Drawing.Size(30, 13);
+            this.lbl_Data.TabIndex = 11;
+            this.lbl_Data.Text = "Data";
+            // 
+            // txt_data
+            // 
+            this.txt_data.Location = new System.Drawing.Point(141, 277);
+            this.txt_data.Name = "txt_data";
+            this.txt_data.Size = new System.Drawing.Size(100, 20);
+            this.txt_data.TabIndex = 12;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 301);
-            this.Controls.Add(this.cmbDeviceList);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(474, 363);
+            this.Controls.Add(this.txt_data);
+            this.Controls.Add(this.lbl_Data);
+            this.Controls.Add(this.txt_OAddress);
+            this.Controls.Add(this.lbl_OffsetAddress);
+            this.Controls.Add(this.cmb_SAddress);
+            this.Controls.Add(this.lbl_SlaveAddress);
+            this.Controls.Add(this.cmb_cmd);
+            this.Controls.Add(this.lbl_CMD);
+            this.Controls.Add(this.txt_RCount);
+            this.Controls.Add(this.lbl_RepeatCount);
+            this.Controls.Add(this.cmb_DeviceList);
+            this.Controls.Add(this.lbl_DeviceList);
+            this.Controls.Add(this.btn_send);
             this.Name = "Form1";
             this.Text = "EtherCAT Fuzzer";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -78,9 +182,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox cmbDeviceList;
+        private System.Windows.Forms.Button btn_send;
+        private System.Windows.Forms.Label lbl_DeviceList;
+        private System.Windows.Forms.ComboBox cmb_DeviceList;
+        private System.Windows.Forms.Label lbl_RepeatCount;
+        private System.Windows.Forms.TextBox txt_RCount;
+        private System.Windows.Forms.Label lbl_CMD;
+        private System.Windows.Forms.ComboBox cmb_cmd;
+        private System.Windows.Forms.Label lbl_SlaveAddress;
+        private System.Windows.Forms.ComboBox cmb_SAddress;
+        private System.Windows.Forms.Label lbl_OffsetAddress;
+        private System.Windows.Forms.TextBox txt_OAddress;
+        private System.Windows.Forms.Label lbl_Data;
+        private System.Windows.Forms.TextBox txt_data;
     }
 }
 
