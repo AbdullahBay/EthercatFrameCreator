@@ -65,7 +65,5 @@ namespace EthercatFuzzer.Types
 
 
 
-
-        public int repeatCount { get; set; }
     }
 }
