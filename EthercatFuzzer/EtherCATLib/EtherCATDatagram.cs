@@ -8,13 +8,21 @@ namespace EtherCATLib
 {
     class EtherCATDatagram
     {
+        public EtherCATDatagram()
+        {
+
+        }
+        /// <summary>
+        /// Standart header uzunluğunu döndürür. 10
+        /// </summary>
+        private short HeaderLength { get { return 10; } } 
         //TODO: paramereleri verilecek
         public DatagramHeader Header = new DatagramHeader(8, 25, 0, 46, 1, 0, 0, 0, 1) 
         { 
             Len=61
         };
         private byte[] data;
-
+        
         public byte[] Data
         {
             get { return data; }
@@ -27,7 +35,7 @@ namespace EtherCATLib
         /// <returns></returns>
         public byte[] GetBytes()
         {
-            int DATALENGTH = 61;
+           int DATALENGTH=Data.Length;
            byte[] ReturnByteArray= new byte[DATALENGTH+10];
            byte[] tmp=Header.GetBytes();
            int index = 0;
@@ -45,5 +53,16 @@ namespace EtherCATLib
         }
         
         //TODO: get bytes array yazılacak;
+        /// <summary>
+        /// Dagramın toplam byte uzunluğunu döner
+        /// </summary>
+        /// <returns>byte array</returns>
+        public short Length { 
+            get
+            {
+                return BitConverter.GetBytes(HeaderLength + Data.Length)[0];
+            }  
+        }
+        
     }
 }
