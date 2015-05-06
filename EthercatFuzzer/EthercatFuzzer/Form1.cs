@@ -27,20 +27,20 @@ namespace EthercatFuzzer
                 cmb_DeviceList.Items.Add(item);
             }
 
-            //cmb_cmd
-            
- //// ---> comboya cmd list çekilecek 
 
+            List<CmdContract> CmdList = EtherCATHeaderList.CmdList;
+            foreach (var item in CmdList)
+            {
+                cmb_cmd.Items.Add(item.Name);
+            }
             
-
-           // foreach( var item2 in cmdList) { cmb_cmd.Items.Add(item2); }
 
             }
 
         private void button1_Click(object sender, System.EventArgs e)
         {
 
-            if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 ) //selectedcmd kotrolü eklenecek
+            if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 ) 
             {
                 MainScreenContract MainScreenData = new MainScreenContract();
 
@@ -55,8 +55,8 @@ namespace EthercatFuzzer
                 try
                 {
                     MainScreenData.DeviceList = cmb_DeviceList.SelectedIndex;        
-                    MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text);    
-                    //MainScreenData.SelectedCmd =                                         //listbox, veri getirilecek- index olarak dönülecek 
+                    MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text);
+                    MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex;                                      
                     MainScreenData.SlaveAddress = Convert.ToInt32(txt_SAddress.Text);      
                     MainScreenData.OffsetAddress = Convert.ToInt32(txt_OAddress.Text);     
                     MainScreenData.Data = richtxt_data.Text;                               

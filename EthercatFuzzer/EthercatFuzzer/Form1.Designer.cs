@@ -45,7 +45,7 @@
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(310, 230);
+            this.btn_send.Location = new System.Drawing.Point(310, 357);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(152, 23);
             this.btn_send.TabIndex = 0;
@@ -127,7 +127,7 @@
             // 
             this.txt_OAddress.Location = new System.Drawing.Point(141, 232);
             this.txt_OAddress.Name = "txt_OAddress";
-            this.txt_OAddress.Size = new System.Drawing.Size(100, 20);
+            this.txt_OAddress.Size = new System.Drawing.Size(190, 20);
             this.txt_OAddress.TabIndex = 10;
             // 
             // lbl_Data
@@ -158,7 +158,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(474, 363);
+            this.ClientSize = new System.Drawing.Size(475, 397);
             this.Controls.Add(this.richtxt_data);
             this.Controls.Add(this.txt_SAddress);
             this.Controls.Add(this.lbl_Data);

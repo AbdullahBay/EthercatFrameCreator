@@ -22,13 +22,15 @@ namespace EthercatFuzzer.Types
         }
 
         //propfull yaz taba bas
-        private int repeatCount ;
+        
+        private int repeatCount;
 
-        public int RepeatCount //Paket Tekrarlama Sayısı
+        public int RepeatCount
         {
-            get { return RepeatCount; }
-            set {RepeatCount  = value; }
+            get { return repeatCount; }
+            set { repeatCount = value; }
         }
+        
 
         private int deviceList;   //donanım listesi
 
