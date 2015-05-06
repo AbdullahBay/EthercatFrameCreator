@@ -24,13 +24,13 @@ namespace EthercatFuzzer.Types
         //propfull yaz taba bas
         private int repeatCount ;
 
-        public int RepeatCount
+        public int RepeatCount //Paket Tekrarlama Sayısı
         {
             get { return RepeatCount; }
             set {RepeatCount  = value; }
         }
 
-        private int deviceList;
+        private int deviceList;   //donanım listesi
 
         public int DeviceList
         {
@@ -38,7 +38,7 @@ namespace EthercatFuzzer.Types
             set { deviceList = value; }
         }
 
-        private int slaveAddress;
+        private int slaveAddress;   //alt adres
 
         public int SlaveAddress
         {
@@ -46,7 +46,7 @@ namespace EthercatFuzzer.Types
             set { slaveAddress = value; }
         }
 
-        private int offsetAddress;
+        private int offsetAddress;   // karşı adress
 
         public int OffsetAddress
         {
@@ -54,7 +54,7 @@ namespace EthercatFuzzer.Types
             set { offsetAddress = value; }
         }
 
-        private string data;
+        private string data;    //gönderilecek bilgi
 
         public string Data
         {

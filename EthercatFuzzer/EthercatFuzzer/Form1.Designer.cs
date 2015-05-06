@@ -36,16 +36,16 @@
             this.lbl_CMD = new System.Windows.Forms.Label();
             this.cmb_cmd = new System.Windows.Forms.ComboBox();
             this.lbl_SlaveAddress = new System.Windows.Forms.Label();
-            this.cmb_SAddress = new System.Windows.Forms.ComboBox();
             this.lbl_OffsetAddress = new System.Windows.Forms.Label();
             this.txt_OAddress = new System.Windows.Forms.TextBox();
             this.lbl_Data = new System.Windows.Forms.Label();
-            this.txt_data = new System.Windows.Forms.TextBox();
+            this.txt_SAddress = new System.Windows.Forms.TextBox();
+            this.richtxt_data = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(292, 316);
+            this.btn_send.Location = new System.Drawing.Point(310, 230);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(152, 23);
             this.btn_send.TabIndex = 0;
@@ -114,14 +114,6 @@
             this.lbl_SlaveAddress.TabIndex = 7;
             this.lbl_SlaveAddress.Text = "Slave Address";
             // 
-            // cmb_SAddress
-            // 
-            this.cmb_SAddress.FormattingEnabled = true;
-            this.cmb_SAddress.Location = new System.Drawing.Point(141, 177);
-            this.cmb_SAddress.Name = "cmb_SAddress";
-            this.cmb_SAddress.Size = new System.Drawing.Size(190, 21);
-            this.cmb_SAddress.TabIndex = 8;
-            // 
             // lbl_OffsetAddress
             // 
             this.lbl_OffsetAddress.AutoSize = true;
@@ -147,23 +139,31 @@
             this.lbl_Data.TabIndex = 11;
             this.lbl_Data.Text = "Data";
             // 
-            // txt_data
+            // txt_SAddress
             // 
-            this.txt_data.Location = new System.Drawing.Point(141, 277);
-            this.txt_data.Name = "txt_data";
-            this.txt_data.Size = new System.Drawing.Size(100, 20);
-            this.txt_data.TabIndex = 12;
+            this.txt_SAddress.Location = new System.Drawing.Point(141, 178);
+            this.txt_SAddress.Name = "txt_SAddress";
+            this.txt_SAddress.Size = new System.Drawing.Size(190, 20);
+            this.txt_SAddress.TabIndex = 13;
+            // 
+            // richtxt_data
+            // 
+            this.richtxt_data.Location = new System.Drawing.Point(141, 282);
+            this.richtxt_data.Name = "richtxt_data";
+            this.richtxt_data.Size = new System.Drawing.Size(321, 69);
+            this.richtxt_data.TabIndex = 14;
+            this.richtxt_data.Text = "";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(474, 363);
-            this.Controls.Add(this.txt_data);
+            this.Controls.Add(this.richtxt_data);
+            this.Controls.Add(this.txt_SAddress);
             this.Controls.Add(this.lbl_Data);
             this.Controls.Add(this.txt_OAddress);
             this.Controls.Add(this.lbl_OffsetAddress);
-            this.Controls.Add(this.cmb_SAddress);
             this.Controls.Add(this.lbl_SlaveAddress);
             this.Controls.Add(this.cmb_cmd);
             this.Controls.Add(this.lbl_CMD);
@@ -190,11 +190,11 @@
         private System.Windows.Forms.Label lbl_CMD;
         private System.Windows.Forms.ComboBox cmb_cmd;
         private System.Windows.Forms.Label lbl_SlaveAddress;
-        private System.Windows.Forms.ComboBox cmb_SAddress;
         private System.Windows.Forms.Label lbl_OffsetAddress;
         private System.Windows.Forms.TextBox txt_OAddress;
         private System.Windows.Forms.Label lbl_Data;
-        private System.Windows.Forms.TextBox txt_data;
+        private System.Windows.Forms.TextBox txt_SAddress;
+        private System.Windows.Forms.RichTextBox richtxt_data;
     }
 }
 
