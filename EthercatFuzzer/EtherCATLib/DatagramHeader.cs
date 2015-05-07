@@ -58,8 +58,8 @@ namespace EtherCATLib
             set { res = value; }
         }
         //todo: Cr ne yapıyor
-        
-        private byte cr;
+        //fix: cr alanı slaveler arası data alışverişi yapıp yapmadığını belirtiyor. Biz bunu 0 olarak alacağız.
+        private byte cr=0;
         /// <summary>
         /// 1 bitlik bir değer alır
         /// </summary>
