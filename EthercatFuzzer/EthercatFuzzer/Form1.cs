@@ -63,10 +63,10 @@ namespace EthercatFuzzer
                 }
                 catch (Exception Ex) { MessageBox.Show(" Hata :  " + Ex.Message); }
 
-                frame.Prepare(MainScreenData);
                 // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
                  //Ofonksiyon(MainScreenData);
-                
+                //frame.Prepare(MainScreenData);
+
                 //frame.Gonder(100, cmb_DeviceList.SelectedIndex);
 
             }
