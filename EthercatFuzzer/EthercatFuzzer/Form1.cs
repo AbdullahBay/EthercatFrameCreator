@@ -57,16 +57,16 @@ namespace EthercatFuzzer
                     MainScreenData.DeviceList = cmb_DeviceList.SelectedIndex;        
                     MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text);
                     MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex;                                      
-                    MainScreenData.SlaveAddress = Convert.ToInt32(txt_SAddress.Text);      
-                    MainScreenData.OffsetAddress = Convert.ToInt32(txt_OAddress.Text);     
+                    MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text);      
+                    MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text);     
                     MainScreenData.Data = richtxt_data.Text;                               
                 }
                 catch (Exception Ex) { MessageBox.Show(" Hata :  " + Ex.Message); }
-                
 
-                // TODO: Contracktın gönderileceği gonksiyon yaılacak
+                frame.Prepare(MainScreenData);
+                // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
                  //Ofonksiyon(MainScreenData);
-
+                
                 //frame.Gonder(100, cmb_DeviceList.SelectedIndex);
 
             }

@@ -39,18 +39,18 @@ namespace EthercatFuzzer.Types
             get { return deviceList; }
             set { deviceList = value; }
         }
+        //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
+        private short slaveAddress;   //alt adres
 
-        private int slaveAddress;   //alt adres
-
-        public int SlaveAddress
+        public short SlaveAddress
         {
             get { return slaveAddress; }
             set { slaveAddress = value; }
         }
 
-        private int offsetAddress;   // karşı adress
+        private short offsetAddress;   // karşı adress
 
-        public int OffsetAddress
+        public short OffsetAddress
         {
             get { return offsetAddress; }
             set { offsetAddress = value; }
@@ -64,8 +64,14 @@ namespace EthercatFuzzer.Types
             set { data = value; }
         }
         
-
-
-
+        //TODO: bu fonksiyo string olan datayı byte aray olarak dönmeli
+        /// <summary>
+        /// Data alanını byte array olarak döner
+        /// </summary>
+        /// <returns></returns>
+        public byte[] getDataAsByteArray()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
