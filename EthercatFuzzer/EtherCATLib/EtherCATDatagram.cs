@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace EtherCATLib
 {
-    class EtherCATDatagram
+    public class EtherCATDatagram
     {
         public EtherCATDatagram()
         {
-
+            Header = new DatagramHeader();
         }
         /// <summary>
         /// Standart header uzunluğunu döndürür. 10
         /// </summary>
         private short HeaderLength { get { return 10; } } 
-        //TODO: paramereleri verilecek
-        public DatagramHeader Header = new DatagramHeader(8, 25, 0, 46, 1, 0, 0, 0, 1) 
-        { 
-            Len=61
-        };
+        //TODO: paramerelerin public private ayarları yapılcak mesela length
+        private DatagramHeader header;
+
+        public DatagramHeader Header
+        {
+            get { return header; }
+            set { header = value; }
+        }
+        
         private byte[] data;
         
         public byte[] Data

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EtherCATLib
 {
-    class DatagramHeader
+    public class DatagramHeader
     {
         //fixed: public private isimlendirmesindeki değişiklik sadece baş harfle alakalıdır. Diğer harfler değiştirilmeyecekrtir örn:SlaveAddress ve slaveAddress şeklinde
         // fixed: sadece kelimlerin baş harfleri büyük olur alt tre kullanılmaz. Standardın adını hatırlayamadım :(
@@ -120,7 +120,6 @@ namespace EtherCATLib
         {
             byte []tempByteArray;
             byte[] returnByteArray=new byte[10]  ;
-
             returnByteArray[0] = Cmd;// ilk byte buraya gelecek;
             returnByteArray[1] = Idx; //sonra diğer byte
             tempByteArray = BitConverter.GetBytes(SlaveAddress);

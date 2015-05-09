@@ -18,9 +18,6 @@ namespace EthercatFuzzer
         public EthernetSender()
         {
             
-           
-            
-            
         }
 
 
@@ -29,7 +26,7 @@ namespace EthercatFuzzer
         internal void Gonder(int kacKez, int selectedDeviceIndex  )
         {
             SetDevice(selectedDeviceIndex);
-            PreparePacked();
+            Prepare();
             
             
             for (int i = 0; i < kacKez; i++)
@@ -40,7 +37,7 @@ namespace EthercatFuzzer
             Selecteddev.Close();
         }
 
-        private void PreparePacked()
+        private void Prepare()
         {
             // hedef mec oluştur son byteyi değiştiriyor:19
             var desMAC = Selecteddev.MacAddress;
@@ -78,6 +75,11 @@ namespace EthercatFuzzer
             }
             return deviceList;
         }
-        
+
+
+        internal void Prepare(Types.MainScreenContract MainScreenData)
+        {
+            ethernet.PayloadData = new EtherCATPacked(MainScreenData).getBytes();
+        }
     }
 }

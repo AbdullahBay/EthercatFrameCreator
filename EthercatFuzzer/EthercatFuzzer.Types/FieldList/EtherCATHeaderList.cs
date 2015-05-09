@@ -20,7 +20,14 @@ namespace EthercatFuzzer.Types.FieldList
 
     }
     public class CmdContract{
-        public int Code;
+        private byte code;
+
+        public byte Code
+        {
+            get { return code; }
+            set { code = value; }
+        }
+        
         public String 
             Abbreviation,
             Name,
