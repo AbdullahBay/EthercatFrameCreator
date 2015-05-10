@@ -52,7 +52,15 @@ namespace EthercatFuzzer.Types
 
         public short OffsetAddress
         {
-            get { return offsetAddress; }
+            get 
+            {
+                if (offsetAddress==null)
+                {
+                    return MyRandom.OffsetAddress();
+                } 
+                //else
+                return offsetAddress; 
+            }
             set { offsetAddress = value; }
         }
 
@@ -72,6 +80,15 @@ namespace EthercatFuzzer.Types
         public byte[] getDataAsByteArray()
         {
             throw new NotImplementedException();
+        }
+        private static class MyRandom
+        {
+            // TODO Burada MainScreenContract ın tüm edeğişkenleri için random fonksiyon tanımlanacak
+            // MainScreenContract get inde kullanılacak
+            public static short  OffsetAddress()
+            {
+                return Convert.ToInt16((new Random()).Next(0,short.MaxValue));
+            }
         }
     }
 }

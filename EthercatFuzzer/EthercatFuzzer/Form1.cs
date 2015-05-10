@@ -33,13 +33,11 @@ namespace EthercatFuzzer
             {
                 cmb_cmd.Items.Add(item.Name);
             }
-            
-
-            }
-
+        }
+        //TODO: device seçilmedi ise yada hiç yoksa gönder butonuna basınca uyarı verilecek
         private void button1_Click(object sender, System.EventArgs e)
         {
-
+            
             if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 ) 
             {
                 MainScreenContract MainScreenData = new MainScreenContract();
@@ -64,7 +62,6 @@ namespace EthercatFuzzer
                 catch (Exception Ex) { MessageBox.Show(" Hata :  " + Ex.Message); }
 
                 // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
-                 //Ofonksiyon(MainScreenData);
                 //frame.Prepare(MainScreenData);
 
                 //frame.Gonder(100, cmb_DeviceList.SelectedIndex);
