@@ -39,11 +39,11 @@ namespace EtherCATLib
             set { cmd = value; }
         }
         private Int16 len;
-        //todo: leght hesapla
+        //todo: leght hesapla : Ethercatdatagram.cs deki length yapısından faydalınalabilir
         /// <summary>
         /// Datagramın Data alnının  byte cinsinden uzunluğunu verir. 0-1486 byte
         /// </summary>
-        public Int16 Len
+        private Int16 Len
         {
             get { return len; }
             set { len = value; }
@@ -87,7 +87,7 @@ namespace EtherCATLib
         }
         /// <summary>
         /// PArametresiz kurucu 
-        /// TODO: parametersiz kurucununda kullanılabilmesi için set getler yazılmalı.
+        /// fixed abdullah: parametersiz kurucununda kullanılabilmesi için set getler yazılmalı. : gerek yok zaten property kullandık, set geti var
         /// </summary>
         public DatagramHeader()
         {
@@ -111,7 +111,7 @@ namespace EtherCATLib
              this.Irq = Irq;
 
          }
-        //TODO: fonksiyon tammalanacak
+        //fixed nisa: fonksiyon tammalanacak 
         /// <summary>
         /// 10 byte lık bir dizi döndürür.
         /// </summary>
@@ -120,31 +120,22 @@ namespace EtherCATLib
         {
             byte []tempByteArray;
             byte[] returnByteArray=new byte[10]  ;
-            returnByteArray[0] = Cmd;// ilk byte buraya gelecek;
-            returnByteArray[1] = Idx; //sonra diğer byte
+            returnByteArray[0] = Cmd;
+            returnByteArray[1] = Idx; 
             tempByteArray = BitConverter.GetBytes(SlaveAddress);
-            returnByteArray[2] = tempByteArray[0];
-            returnByteArray[3] = tempByteArray[1];
-            // sonra ki 2 byteye addresin ilk kısmı
-            //burayada aderisin ikinci ksımı: örenk olarak yapıyorum;
-            //  fix: temp arraya yeni değişken döndüğü için sadece 0 ve 1 indisleri dolu olcak.
+                returnByteArray[2] = tempByteArray[0];
+                returnByteArray[3] = tempByteArray[1];
             tempByteArray=BitConverter.GetBytes(OffsetAddress);
-            returnByteArray[4] = tempByteArray[0]; // fix:[0]
-            returnByteArray[5] = tempByteArray[1];
-            //fix: bu satırda hata mı var. morr çalışmıyor
+                returnByteArray[4] = tempByteArray[0]; 
+                returnByteArray[5] = tempByteArray[1];
+            //TODO: bu satırda hata mı var. moor çalışmıyor
             Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.twelve + More * TwoPow.thirteen;
-           tempByteArray = BitConverter.GetBytes(headerasint);
-           returnByteArray[6] = tempByteArray[0];
-           returnByteArray[7] = tempByteArray[1];
+            tempByteArray = BitConverter.GetBytes(headerasint);
+                returnByteArray[6] = tempByteArray[0];
+                returnByteArray[7] = tempByteArray[1];
             tempByteArray = BitConverter.GetBytes(Irq);
-            returnByteArray[8] = tempByteArray[0];
-            returnByteArray[9] = tempByteArray[1];
-         
-             /*sonra gelen 16 bit bir gurup olduğu için önce çarpma işlemi ile 16 bit 
-             * tammalanacak bir int oluşturulup ilk 2 bytesi gerekli byteye atanacak*/
-            // sonolarak 8 bitlik alanzaten bytta tutuluyor oda oraya atuılacak.
-
-            // ve 8 bytelik alanoluşturulduğu için döndürülecek.
+                returnByteArray[8] = tempByteArray[0];
+                returnByteArray[9] = tempByteArray[1];
             return returnByteArray;
         }
     }
