@@ -9,6 +9,7 @@ namespace EthercatFuzzer.Types
     //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class MainScreenContract
     {
+        //TODO: randomu kontorol etmek için tüm alamnlar nullable yapılacak.  SelectedDeviceIndex hariç
         public MainScreenContract()
         {
 
@@ -34,7 +35,7 @@ namespace EthercatFuzzer.Types
         
 
         private int deviceList;   //donanım listesi
-
+        //TODO: adı SelectedDeviceIndex olacak
         public int DeviceList
         {
             get { return deviceList; }
