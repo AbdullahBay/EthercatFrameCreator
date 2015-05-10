@@ -8,7 +8,8 @@ namespace EtherCATLib
 {
     //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     class EtherCATHeader
-    {
+    {    
+        #region Property
        
         private Int16 eLen;
 
@@ -32,7 +33,8 @@ namespace EtherCATLib
              get { return eType; }
              set { eType = value; }
          }
-
+         #endregion Property
+         #region Constructor
          public EtherCATHeader(Int16 ELength, byte EReserved, byte EType)
          {
              // TODO: resorved alanı normalde 0 olacak. 
@@ -43,14 +45,14 @@ namespace EtherCATLib
 
 
          }
+        
          public EtherCATHeader()
          {
 
 
          }
-
-
-
+         #endregion Constructor
+         #region Method
          internal byte[] GetBytes()
          {
              int headerAsInt = EReserved * TwoPow.eleven + ELength + EType * TwoPow.twelve;
@@ -58,5 +60,6 @@ namespace EtherCATLib
 
              return new byte[] { headerAsByte[0], headerAsByte[1] };
          }
+        #endregion Method
     }
 }

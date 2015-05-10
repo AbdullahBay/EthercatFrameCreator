@@ -10,6 +10,7 @@ namespace EtherCATLib
     public class TwoPow
     {
         //fixed abdullah: değerleri kontrol et
+        #region Propert
         public static Int16
             one = 2,
             two = 4,
@@ -26,9 +27,6 @@ namespace EtherCATLib
             thirteen=8192,
             forteen=16384;
 
-             
-        // 16 dan sonrası buraya gelecek 32 den daha fazla lazım olmayacak
-        //public static Int32
-        //    sixteen = 0;
+        #endregion Propert
     }
 }

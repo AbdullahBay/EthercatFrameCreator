@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace EtherCATLib
 {
-    //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
+         //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
+        #region Property
     public class EtherCATPacked
     {
         //TODO: Propfull a çek
@@ -17,33 +18,9 @@ namespace EtherCATLib
             EReserved=0,
             EType=1 //SOR TODO : ethercat typ alanında sadece 1 kabul ediyor
         };
-
+        #endregion Property
         //TODO: Propfull a çek
-        List<EtherCATDatagram> Datagrams = new List<EtherCATDatagram>();
-
-
-        
-        public void PrepareEthercatData()
-        {
-            int DATAGRAMSAYISI=3;
-            for (int i = 0; i < DATAGRAMSAYISI; i++)
-            {
-                Datagrams.Add(new EtherCATDatagram());
-                if (DATAGRAMSAYISI-1!=i)
-                {
-                    Datagrams[Datagrams.Count-1].Header.SetMore();
-                }
-            }
-        }
-        
-        
-        
-        public EtherCATPacked()
-        {
-            PrepareEthercatData();
-            
-        }
-
+        #region Constructor
         public EtherCATPacked(MainScreenContract MainScreenData)
         {
             // fixed abdullah: Complete member initialization
@@ -57,11 +34,37 @@ namespace EtherCATLib
                 },
                 Data=MainScreenData.getDataAsByteArray()
             };
+          
             List<EtherCATDatagram> datagrams = MultiplexDatagram(datagram, MainScreenData.RepeatCount);
             Datagrams.AddRange(datagrams);
             
         }
+        #endregion Constructor
+        #region Method
+        List<EtherCATDatagram> Datagrams = new List<EtherCATDatagram>();
 
+
+
+        public void PrepareEthercatData()
+        {
+            int DATAGRAMSAYISI = 3;
+            for (int i = 0; i < DATAGRAMSAYISI; i++)
+            {
+                Datagrams.Add(new EtherCATDatagram());
+                if (DATAGRAMSAYISI - 1 != i)
+                {
+                    Datagrams[Datagrams.Count - 1].Header.SetMore();
+                }
+            }
+        }
+
+
+
+        public EtherCATPacked()
+        {
+            PrepareEthercatData();
+
+        }
         private List<EtherCATDatagram> MultiplexDatagram(EtherCATDatagram datagram, int repeatCount)
         {
             List<EtherCATDatagram> returnList = new List<EtherCATDatagram>();
@@ -99,5 +102,7 @@ namespace EtherCATLib
             }
             return etherCATDataAsBytes;
         }
+
     }
+        #endregion Method
 }
