@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EthercatFuzzer.Types.FieldList
 {
+    //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class EtherCATHeaderList
     {
         //TODO: Dökumandan cmd listsinin tamammı eklenecek.

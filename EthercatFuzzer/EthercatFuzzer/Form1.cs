@@ -9,6 +9,7 @@ using EthercatFuzzer.Types.FieldList;
 
 namespace EthercatFuzzer
 {
+    //TODO: forma uygun bir iism verilmeli :MainScreen olabilir.
     public partial class Form1 : System.Windows.Forms.Form
     {
         public Form1()

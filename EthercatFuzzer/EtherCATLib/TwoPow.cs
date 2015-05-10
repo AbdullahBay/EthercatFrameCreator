@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EtherCATLib
 {
+    //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class TwoPow
     {
         //fixed abdullah: değerleri kontrol et

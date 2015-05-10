@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace EthercatFuzzer.Types
 {
+    //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class MainScreenContract
     {
         public MainScreenContract()

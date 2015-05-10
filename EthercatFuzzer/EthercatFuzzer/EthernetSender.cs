@@ -9,6 +9,8 @@ using SharpPcap;
 using EtherCATLib;
 namespace EthercatFuzzer
 {
+    //TODO: Bu sınıf soyutlanıp (sadece kedni işini yapar hale getirilipp) ethercat libe alınabilir diye düşünüyorum. işler bitince bakalım.
+    //TODO Data nın ne olacağı ve DAtanın nasıl işleneceği ile alakalı çalışma yapmak lazım ilk testten sonra. datagramlar için
     class EthernetSender
     {
         static public byte [] ethernetBytes= new byte[100];

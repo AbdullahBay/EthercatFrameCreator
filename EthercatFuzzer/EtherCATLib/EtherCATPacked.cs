@@ -8,39 +8,33 @@ using System.Threading.Tasks;
 
 namespace EtherCATLib
 {
+    //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class EtherCATPacked
     {
-        //EtherCATData Data = new EtherCATData();
+        //TODO: Propfull a çek
         EtherCATHeader Header = new EtherCATHeader(){
             //fixed abdullah :legth bilgisi datagramların toplam byte sayısı ile doldurulacak.//ELength=80,
             EReserved=0,
-            EType=1 //TODO : ethercat typ alanında sadece 1 kabul ediyor
+            EType=1 //SOR TODO : ethercat typ alanında sadece 1 kabul ediyor
         };
 
-        
+        //TODO: Propfull a çek
         List<EtherCATDatagram> Datagrams = new List<EtherCATDatagram>();
 
 
-
-       public void PrepareEthercatData()
-       {
-           int DATAGRAMSAYISI=3;
-           for (int i = 0; i < DATAGRAMSAYISI; i++)
-           {
-               Datagrams.Add(new EtherCATDatagram());
-               if (DATAGRAMSAYISI-1!=i)
-               {
-                   
-                       Datagrams[Datagrams.Count-1].Header.SetMore();
-                       
-               }
-               
-               
-               
-           }
-
-       
-       }
+        
+        public void PrepareEthercatData()
+        {
+            int DATAGRAMSAYISI=3;
+            for (int i = 0; i < DATAGRAMSAYISI; i++)
+            {
+                Datagrams.Add(new EtherCATDatagram());
+                if (DATAGRAMSAYISI-1!=i)
+                {
+                    Datagrams[Datagrams.Count-1].Header.SetMore();
+                }
+            }
+        }
         
         
         
@@ -89,9 +83,10 @@ namespace EtherCATLib
             Header.ELength = dataLength;
             byte[] etherCATDataAsBytes = new byte[Header.ELength];
             byte[] ethercatHeader = Header.GetBytes();
-            etherCATDataAsBytes[0] = ethercatHeader[0];
-            etherCATDataAsBytes[1] = ethercatHeader[1];
+                etherCATDataAsBytes[0] = ethercatHeader[0];
+                etherCATDataAsBytes[1] = ethercatHeader[1];
             int indis=2;
+            // data lar yükleniyor
             foreach (EtherCATDatagram datagram in Datagrams)
             {
                 byte[] tempdatagramArray = datagram.GetBytes();
@@ -102,12 +97,6 @@ namespace EtherCATLib
                     indis=indis+1;
                 }
             }
-            // data alanı örnek vei ile dolduruluyor
-            /*
-            for (int i = 2; i < etherCATDataAsBytes.Length; i++)
-            {
-                etherCATDataAsBytes[i] = 100;
-            }*/
             return etherCATDataAsBytes;
         }
     }

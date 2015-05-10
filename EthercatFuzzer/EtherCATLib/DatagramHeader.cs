@@ -8,37 +8,53 @@ namespace EtherCATLib
 {
     public class DatagramHeader
     {
-        //fixed: public private isimlendirmesindeki değişiklik sadece baş harfle alakalıdır. Diğer harfler değiştirilmeyecekrtir örn:SlaveAddress ve slaveAddress şeklinde
-        // fixed: sadece kelimlerin baş harfleri büyük olur alt tre kullanılmaz. Standardın adını hatırlayamadım :(
+        //fixed nisa: public private isimlendirmesindeki değişiklik sadece baş harfle alakalıdır. Diğer harfler değiştirilmeyecekrtir örn:SlaveAddress ve slaveAddress şeklinde
+        // fixed nisa: sadece kelimlerin baş harfleri büyük olur alt tre kullanılmaz. Standardın adını hatırlayamadım :(
+
+        
+        #region Property
+
+        #region private
+ 
+        //varsayılan değerler burada atanır
         private Int16 slaveAddress;
+        private Int16 offsetAddress;
+        private byte idx;
+        private byte cmd;
+        private Int16 len;
+        private byte cr = 0;
+        private byte res;
+        private byte more = 1;
+        private byte irq;
+
+        #endregion private
+        
+        #region public
 
         public Int16 SlaveAddress
         {
             get { return slaveAddress; }
             set { slaveAddress = value; }
         }
-        private Int16 offsetAddress;
-
+        
         public Int16 OffsetAddress
         {
             get { return offsetAddress; }
             set { offsetAddress = value; }
         }
-        private byte idx;
-
+        
         public byte Idx
         {
             get { return idx; }
             set { idx = value; }
         }
-        private byte cmd;
 
         public byte Cmd
         {
             get { return cmd; }
             set { cmd = value; }
         }
-        private Int16 len;
+        
         //todo: leght hesapla : Ethercatdatagram.cs deki length yapısından faydalınalabilir
         /// <summary>
         /// Datagramın Data alnının  byte cinsinden uzunluğunu verir. 0-1486 byte
@@ -48,7 +64,7 @@ namespace EtherCATLib
             get { return len; }
             set { len = value; }
         }
-        private byte res;
+        
         /// <summary>
         /// 3 bitlik değer alır kabul edilen tek değer 0 dır.
         /// </summary>
@@ -57,9 +73,10 @@ namespace EtherCATLib
             get { return res; }
             set { res = value; }
         }
-        //todo: Cr ne yapıyor
-        //fix: cr alanı slaveler arası data alışverişi yapıp yapmadığını belirtiyor. Biz bunu 0 olarak alacağız.
-        private byte cr=0;
+
+        //SOR: Cr ne yapıyor
+        //FORFUZZİNG: cr alanı slaveler arası data alışverişi yapıp yapmadığını belirtiyor. Biz bunu 0 olarak alacağız.
+
         /// <summary>
         /// 1 bitlik bir değer alır
         /// </summary>
@@ -68,7 +85,7 @@ namespace EtherCATLib
             get { return cr; }
             set { cr = value; }
         }
-        private byte more = 1;
+        
         /// <summary>
         /// Devamında datagram var ise 1 alır. varsayılan 1 dır.
         /// </summary>
@@ -77,14 +94,18 @@ namespace EtherCATLib
             get { return more; }
             set { more = value; }
         }
-        //TODO: hocaya  sor. Bir etherrcat paketindeki tüm irq lar aynı gibi.
-        private byte irq;
 
+        //SOR TODO: hocaya  sor. Bir etherrcat paketindeki tüm irq lar aynı gibi.
         public byte Irq
         {
             get { return irq; }
             set { irq = value; }
         }
+        #endregion public
+
+        #endregion Property
+
+        #region Constructor
         /// <summary>
         /// PArametresiz kurucu 
         /// fixed abdullah: parametersiz kurucununda kullanılabilmesi için set getler yazılmalı. : gerek yok zaten property kullandık, set geti var
@@ -93,24 +114,31 @@ namespace EtherCATLib
         {
 
         }
+        public DatagramHeader(byte Cmd,byte Idx,Int16 SlaveAddress, Int16 OffsetAddress,byte Len, byte Res,byte Cr, byte More,byte Irq)
+
+        {
+            this.Cmd = Cmd;
+            this.Idx = Idx;
+            this.SlaveAddress = SlaveAddress;
+            this.OffsetAddress = OffsetAddress;
+            this.Len = Len;
+            this.Res = Res;
+            this.Cr = Cr;
+            this.More = More;
+            this.Irq = Irq;
+
+        }
+        #endregion Constructor
+
+        #region Method
+        /// <summary>
+        /// More Bitini 1 yapar
+        /// </summary>
         public void SetMore()
         {
             More = 1;
         }
-        public DatagramHeader(byte Cmd,byte Idx,Int16 SlaveAddress, Int16 OffsetAddress,byte Len, byte Res,byte Cr, byte More,byte Irq)
-
-         {
-             this.Cmd = Cmd;
-             this.Idx = Idx;
-             this.SlaveAddress = SlaveAddress;
-             this.OffsetAddress = OffsetAddress;
-             this.Len = Len;
-             this.Res = Res;
-             this.Cr = Cr;
-             this.More = More;
-             this.Irq = Irq;
-
-         }
+        
         //fixed nisa: fonksiyon tammalanacak 
         /// <summary>
         /// 10 byte lık bir dizi döndürür.
@@ -138,5 +166,6 @@ namespace EtherCATLib
                 returnByteArray[9] = tempByteArray[1];
             return returnByteArray;
         }
+        #endregion Method
     }
 }
