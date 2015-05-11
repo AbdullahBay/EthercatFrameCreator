@@ -27,7 +27,7 @@ namespace EthercatFuzzer.Types
         public int RepeatCount
         {
             get {
-                if (repeatCount==null)
+                if (repeatCount == null)
                 {
                     return MyRandom.RepeatCount();
                 }
@@ -37,16 +37,16 @@ namespace EthercatFuzzer.Types
         }
         
 
-        private int? selectedDeviceIndex;   //donanım listesi
+        private int selectedDeviceIndex;   //donanım listesi
         //Fixed coskun: adı SelectedDeviceIndex olacak
         //"Boş bırakılamaz" durumu olduğundan random söz konusu değil
-        public int? SelectedDeviceIndex
+        public int SelectedDeviceIndex
         {
             get { return selectedDeviceIndex; }
             set { selectedDeviceIndex = value; }
         }
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
-        private short slaveAddress;   //alt adres
+        private short slaveAddress;   //alt adres                      --------nullable durumu incelenecek 
 
         public short SlaveAddress
         {
@@ -84,6 +84,7 @@ namespace EthercatFuzzer.Types
             get {
                 if (data == null) 
                 {
+
                     //int intValue = MyRandom.Data();
                     //byte[] intBytes = BitConverter.GetBytes(intValue);
                     //Array.Reverse(intBytes);

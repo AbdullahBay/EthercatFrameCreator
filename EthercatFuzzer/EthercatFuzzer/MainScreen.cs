@@ -57,14 +57,28 @@ namespace EthercatFuzzer
 
                 try
                 {
-                    MainScreenData.SelectedDeviceIndex = cmb_DeviceList.SelectedIndex;        
-                    MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text);
-                    MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex;                                      
-                    MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text);      
-                    MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text);     
-                    MainScreenData.Data = richtxt_data.Text;                               
+
+                    MainScreenData.SelectedDeviceIndex = cmb_DeviceList.SelectedIndex;
+                    
+                    // düzeltilecek
+                    if (txt_RCount.Text == "") { MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text); }
+                    else { MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text); }
+
+                    if (cmb_cmd.Text == "") { cmb_cmd.Text = null; MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex; } //düzeltilecek
+                    else { MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex; }
+
+                    if (txt_SAddress.Text == "") { txt_SAddress.Text = null; MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text); }
+                    else { MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text); }
+
+                    if (txt_OAddress.Text == "") { txt_OAddress.Text = null; MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text); }
+                    else { MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text); }
+
+                    if (richtxt_data.Text == "") { richtxt_data.Text = null; MainScreenData.Data = richtxt_data.Text; }
+                    else { MainScreenData.Data = richtxt_data.Text; }      
+                    
+  
                 }
-                catch (Exception Ex) { MessageBox.Show(" Hata :  " + Ex.Message); }
+                catch (Exception Ex) { MessageBox.Show(" Error :  " + Ex.Message); }
 
                 // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
                 //frame.Prepare(MainScreenData);
