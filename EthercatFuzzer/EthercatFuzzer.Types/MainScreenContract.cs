@@ -46,9 +46,13 @@ namespace EthercatFuzzer.Types
             set { selectedDeviceIndex = value; }
         }
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
+<<<<<<< HEAD
         private short slaveAddress;   //alt adres                      --------nullable durumu incelenecek 
+=======
+        private short? slaveAddress;   //alt adres
+>>>>>>> 3812101e1f369797926bd36f67e2527a85ce3683
 
-        public short SlaveAddress
+        public short? SlaveAddress
         {
             get {
                 if (slaveAddress == null)
@@ -90,6 +94,7 @@ namespace EthercatFuzzer.Types
                     //Array.Reverse(intBytes);
                     //byte[] result = intBytes;
                    // bit array return yazılacak 
+                    return "asasd";
                 }
                 return data;
                 }
@@ -97,14 +102,14 @@ namespace EthercatFuzzer.Types
             set { data = value; }
         }
         
-        //TODO: bu fonksiyo string olan datayı byte array olarak dönmeli
+        //fixed abdullah: bu fonksiyo string olan datayı byte array olarak dönmeli
         /// <summary>
         /// Data alanını byte array olarak döner
         /// </summary>
         /// <returns></returns>
         public byte[] getDataAsByteArray()
         {
-            throw new NotImplementedException();
+            return Encoding.ASCII.GetBytes(Data);
         }
 
         private static class MyRandom

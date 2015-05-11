@@ -14,29 +14,35 @@ namespace EtherCATLib
         public EtherCATDatagram()
         {
             Header = new DatagramHeader();
+            Data = new byte[] { 255, 254, 253, 252, 251, 250 };
         }
         #endregion Constructor
         /// <summary>
         /// Standart header uzunluğunu döndürür. 10
         /// </summary>
         #region Propert
-        private short HeaderLength { get { return 10; } } 
-        //TODO: paramerelerin public private ayarları yapılcak mesela length
-        private DatagramHeader header;
 
+        private short HeaderLength { get { return 10; } } 
+       
+        private DatagramHeader header;
+        private byte[] data;
+        //TODO: paramerelerin public private ayarları yapılcak mesela length
         public DatagramHeader Header
         {
             get { return header; }
             set { header = value; }
         }
         
-        private byte[] data;
-        
         public byte[] Data
         {
             get { return data; }
-            set { data = value; }
+            set 
+            { 
+                data = value;
+                Header.Len = Convert.ToInt16(data.Length);
+            }
         }
+
         #endregion Propert
         /// <summary>
         /// 10 bytelik dizi döndürür.
@@ -55,7 +61,7 @@ namespace EtherCATLib
             }
             for (int i = 0; i < DATALENGTH; i++)
             {
-                ReturnByteArray[index++] =255 ;
+                ReturnByteArray[index++] = Data[i] ;
             }
            
            return ReturnByteArray;
