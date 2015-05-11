@@ -6,7 +6,7 @@ using EthercatFuzzer.Types;
 using EthercatFuzzer.Types.FieldList;
 
 
-
+//TODO : Destination ve Source "ethernet = new EthernetPacket(Selecteddev.MacAddress, new System.Net.NetworkInformation.PhysicalAddress(desMACBytes), EthernetPacketType.EtherCatProtocol);" tipinde gönderilecek
 namespace EthercatFuzzer
 {
     //Fixed coskun: forma uygun bir isim verilmeli : MainScreen olabilir.  

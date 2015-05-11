@@ -41,11 +41,15 @@
             this.lbl_Data = new System.Windows.Forms.Label();
             this.txt_SAddress = new System.Windows.Forms.TextBox();
             this.richtxt_data = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_send
             // 
-            this.btn_send.Location = new System.Drawing.Point(310, 357);
+            this.btn_send.Location = new System.Drawing.Point(345, 253);
             this.btn_send.Name = "btn_send";
             this.btn_send.Size = new System.Drawing.Size(152, 23);
             this.btn_send.TabIndex = 0;
@@ -66,7 +70,7 @@
             // cmb_DeviceList
             // 
             this.cmb_DeviceList.FormattingEnabled = true;
-            this.cmb_DeviceList.Location = new System.Drawing.Point(141, 25);
+            this.cmb_DeviceList.Location = new System.Drawing.Point(30, 48);
             this.cmb_DeviceList.Name = "cmb_DeviceList";
             this.cmb_DeviceList.Size = new System.Drawing.Size(190, 21);
             this.cmb_DeviceList.TabIndex = 2;
@@ -83,7 +87,7 @@
             // 
             // txt_RCount
             // 
-            this.txt_RCount.Location = new System.Drawing.Point(141, 75);
+            this.txt_RCount.Location = new System.Drawing.Point(30, 100);
             this.txt_RCount.Name = "txt_RCount";
             this.txt_RCount.Size = new System.Drawing.Size(190, 20);
             this.txt_RCount.TabIndex = 4;
@@ -100,7 +104,7 @@
             // cmb_cmd
             // 
             this.cmb_cmd.FormattingEnabled = true;
-            this.cmb_cmd.Location = new System.Drawing.Point(141, 126);
+            this.cmb_cmd.Location = new System.Drawing.Point(30, 151);
             this.cmb_cmd.Name = "cmb_cmd";
             this.cmb_cmd.Size = new System.Drawing.Size(190, 21);
             this.cmb_cmd.TabIndex = 6;
@@ -125,7 +129,7 @@
             // 
             // txt_OAddress
             // 
-            this.txt_OAddress.Location = new System.Drawing.Point(141, 232);
+            this.txt_OAddress.Location = new System.Drawing.Point(30, 256);
             this.txt_OAddress.Name = "txt_OAddress";
             this.txt_OAddress.Size = new System.Drawing.Size(190, 20);
             this.txt_OAddress.TabIndex = 10;
@@ -133,7 +137,7 @@
             // lbl_Data
             // 
             this.lbl_Data.AutoSize = true;
-            this.lbl_Data.Location = new System.Drawing.Point(30, 285);
+            this.lbl_Data.Location = new System.Drawing.Point(253, 134);
             this.lbl_Data.Name = "lbl_Data";
             this.lbl_Data.Size = new System.Drawing.Size(30, 13);
             this.lbl_Data.TabIndex = 11;
@@ -141,24 +145,60 @@
             // 
             // txt_SAddress
             // 
-            this.txt_SAddress.Location = new System.Drawing.Point(141, 178);
+            this.txt_SAddress.Location = new System.Drawing.Point(33, 201);
             this.txt_SAddress.Name = "txt_SAddress";
             this.txt_SAddress.Size = new System.Drawing.Size(190, 20);
             this.txt_SAddress.TabIndex = 13;
             // 
             // richtxt_data
             // 
-            this.richtxt_data.Location = new System.Drawing.Point(141, 282);
+            this.richtxt_data.Location = new System.Drawing.Point(256, 151);
             this.richtxt_data.Name = "richtxt_data";
-            this.richtxt_data.Size = new System.Drawing.Size(321, 69);
+            this.richtxt_data.Size = new System.Drawing.Size(241, 42);
             this.richtxt_data.TabIndex = 14;
             this.richtxt_data.Text = "";
             // 
-            // Form1
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(253, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 13);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Source Adress";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(256, 49);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(241, 20);
+            this.textBox1.TabIndex = 17;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(253, 82);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(95, 13);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Destination Adress";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(256, 100);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(241, 20);
+            this.textBox2.TabIndex = 18;
+            // 
+            // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 397);
+            this.ClientSize = new System.Drawing.Size(506, 291);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.richtxt_data);
             this.Controls.Add(this.txt_SAddress);
             this.Controls.Add(this.lbl_Data);
@@ -172,7 +212,7 @@
             this.Controls.Add(this.cmb_DeviceList);
             this.Controls.Add(this.lbl_DeviceList);
             this.Controls.Add(this.btn_send);
-            this.Name = "Form1";
+            this.Name = "MainScreen";
             this.Text = "EtherCat Fuzzer";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
@@ -195,6 +235,10 @@
         private System.Windows.Forms.Label lbl_Data;
         private System.Windows.Forms.TextBox txt_SAddress;
         private System.Windows.Forms.RichTextBox richtxt_data;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }
 
