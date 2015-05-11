@@ -29,7 +29,7 @@ namespace EtherCATLib
                 Header = new DatagramHeader()
                 {
                     Cmd=EtherCATHeaderList.CmdList.ElementAt(MainScreenData.SelectedCmd.GetValueOrDefault()).Code,
-                    SlaveAddress=MainScreenData.SlaveAddress,
+                    SlaveAddress=MainScreenData.SlaveAddress.GetValueOrDefault(),
                     OffsetAddress=MainScreenData.OffsetAddress,
                 },
                 Data=MainScreenData.getDataAsByteArray()
@@ -81,10 +81,10 @@ namespace EtherCATLib
             short dataLength=0;
             foreach (EtherCATDatagram datagram in Datagrams)
 	        {
-                dataLength = datagram.Length;
+                dataLength+= datagram.Length;
 	        }
             Header.ELength = dataLength;
-            byte[] etherCATDataAsBytes = new byte[Header.ELength];
+            byte[] etherCATDataAsBytes = new byte[Header.ELength + 2];
             byte[] ethercatHeader = Header.GetBytes();
                 etherCATDataAsBytes[0] = ethercatHeader[0];
                 etherCATDataAsBytes[1] = ethercatHeader[1];

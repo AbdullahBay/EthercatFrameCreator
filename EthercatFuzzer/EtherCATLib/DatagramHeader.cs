@@ -24,7 +24,7 @@ namespace EtherCATLib
         private Int16 len;
         private byte cr = 0;
         private byte res;
-        private byte more = 1;
+        private byte more;
         private byte irq;
 
         #endregion private
@@ -55,11 +55,11 @@ namespace EtherCATLib
             set { cmd = value; }
         }
         
-        //todo: leght hesapla : Ethercatdatagram.cs deki length yapısından faydalınalabilir
+        //fixed salih: leght hesapla : Ethercatdatagram.cs deki length yapısından faydalınalabilir: üst katmanda gerçekleştirildi
         /// <summary>
         /// Datagramın Data alnının  byte cinsinden uzunluğunu verir. 0-1486 byte
         /// </summary>
-        private Int16 Len
+        public Int16 Len
         {
             get { return len; }
             set { len = value; }
@@ -157,7 +157,7 @@ namespace EtherCATLib
                 returnByteArray[4] = tempByteArray[0]; 
                 returnByteArray[5] = tempByteArray[1];
             //TODO: bu satırda hata mı var. moor çalışmıyor
-            Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.twelve + More * TwoPow.thirteen;
+            Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.forteen + More * TwoPow.fiveteen;
             tempByteArray = BitConverter.GetBytes(headerasint);
                 returnByteArray[6] = tempByteArray[0];
                 returnByteArray[7] = tempByteArray[1];

@@ -24,8 +24,9 @@ namespace EtherCATLib
             ten = 1024,
             eleven = 2048,
             twelve = 4096,
-            thirteen=8192,
-            forteen=16384;
+            thirteen = 8192,
+            forteen = 16384,
+            fiveteen = Int16.MaxValue;
 
         #endregion Propert
     }
