@@ -46,11 +46,9 @@ namespace EthercatFuzzer.Types
             set { selectedDeviceIndex = value; }
         }
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
-<<<<<<< HEAD
-        private short slaveAddress;   //alt adres                      --------nullable durumu incelenecek 
-=======
+
         private short? slaveAddress;   //alt adres
->>>>>>> 3812101e1f369797926bd36f67e2527a85ce3683
+
 
         public short? SlaveAddress
         {
