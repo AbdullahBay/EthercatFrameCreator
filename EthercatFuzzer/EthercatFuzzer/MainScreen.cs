@@ -111,6 +111,7 @@ namespace EthercatFuzzer
             SelectDevice.Open();
         }
 
+       
 
         private void lbl_DeviceList_Click(object sender, System.EventArgs e)
         {
