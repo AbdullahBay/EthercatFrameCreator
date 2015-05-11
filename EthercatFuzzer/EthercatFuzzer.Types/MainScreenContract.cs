@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EthercatFuzzer.Types.FieldList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,22 @@ namespace EthercatFuzzer.Types
         //TODO: randomu kontorol etmek için tüm alamnlar nullable yapılacak.  SelectedDeviceIndex hariç
         public MainScreenContract() {}
         //null atanmış ise random olduğu anlaşılacak.
+
+        
+         
         private int? selectedCmd;
 
+        //TODO : Index üzerinden random değer atanılacak. 
         public int? SelectedCmd
         {
-            get { return selectedCmd; }
+            get {
+                if (selectedCmd == null) 
+                {
+                    return MyRandom.SelectedCmd();
+                }
+                
+                return selectedCmd; 
+                 }
             set { selectedCmd = value; }
         }
 
@@ -133,6 +145,13 @@ namespace EthercatFuzzer.Types
             {
                 return Convert.ToInt32((new Random()).Next(0, int.MaxValue));
             }
+           
+            public static int SelectedCmd()
+            {
+                List<CmdContract> CmdList = EtherCATHeaderList.CmdList;
+                return Convert.ToInt32((new Random()).Next(0,CmdList.Count));
+            }
         }
+         
     }
 }

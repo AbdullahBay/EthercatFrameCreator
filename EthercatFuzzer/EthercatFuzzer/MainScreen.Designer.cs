@@ -42,9 +42,9 @@
             this.txt_SAddress = new System.Windows.Forms.TextBox();
             this.richtxt_data = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_SourceAdress = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_DestinationAdress = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_send
@@ -167,12 +167,12 @@
             this.label1.TabIndex = 15;
             this.label1.Text = "Source Adress";
             // 
-            // textBox1
+            // txt_SourceAdress
             // 
-            this.textBox1.Location = new System.Drawing.Point(256, 49);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(241, 20);
-            this.textBox1.TabIndex = 17;
+            this.txt_SourceAdress.Location = new System.Drawing.Point(256, 49);
+            this.txt_SourceAdress.Name = "txt_SourceAdress";
+            this.txt_SourceAdress.Size = new System.Drawing.Size(241, 20);
+            this.txt_SourceAdress.TabIndex = 17;
             // 
             // label2
             // 
@@ -183,20 +183,20 @@
             this.label2.TabIndex = 16;
             this.label2.Text = "Destination Adress";
             // 
-            // textBox2
+            // txt_DestinationAdress
             // 
-            this.textBox2.Location = new System.Drawing.Point(256, 100);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(241, 20);
-            this.textBox2.TabIndex = 18;
+            this.txt_DestinationAdress.Location = new System.Drawing.Point(256, 100);
+            this.txt_DestinationAdress.Name = "txt_DestinationAdress";
+            this.txt_DestinationAdress.Size = new System.Drawing.Size(241, 20);
+            this.txt_DestinationAdress.TabIndex = 18;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(506, 291);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txt_DestinationAdress);
+            this.Controls.Add(this.txt_SourceAdress);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.richtxt_data);
@@ -236,9 +236,9 @@
         private System.Windows.Forms.TextBox txt_SAddress;
         private System.Windows.Forms.RichTextBox richtxt_data;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_SourceAdress;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_DestinationAdress;
     }
 }
 
