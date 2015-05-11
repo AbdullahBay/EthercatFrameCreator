@@ -7,6 +7,7 @@ using EthercatFuzzer.Types.FieldList;
 using System.Net.NetworkInformation;
 using System.Drawing;
 using SharpPcap;
+using System.Globalization;
 
 
 //TODO : Destination ve Source Adress "ethernet = new EthernetPacket(Selecteddev.MacAddress, new System.Net.NetworkInformation.PhysicalAddress(desMACBytes), EthernetPacketType.EtherCatProtocol);" tipinde gönderilecek
@@ -25,7 +26,7 @@ namespace EthercatFuzzer
         EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
-           
+            txt_SourceAdress.Enabled = false;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;  //Forum boyutlarını sabitleme
 
             frame = new EthernetSender();
@@ -90,13 +91,14 @@ namespace EthercatFuzzer
 
         }
 
-
+        //TODO : Mac adresileri istenilen türe çevirilerek gönderilecek
         ICaptureDevice SelectDevice;
         private void cmb_DeviceList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             SetDevice(cmb_DeviceList.SelectedIndex);
             var macAdress = SelectDevice.MacAddress;
-            txt_SourceAdress.Text = macAdress.ToString();
+            //txt_SourceAdress.Text = macAdress.ToString();
+            txt_SourceAdress.Text = MacAddressParse(macAdress.ToString());
         }
 
         private void SetDevice(int selectedDeviceIndex)
@@ -107,7 +109,20 @@ namespace EthercatFuzzer
             SelectDevice.Open();
         }
 
-       
+        //Mac Adreslerinin TextBox için parse edildiği yer.
+        string MacAddressParse(string MacAddress) 
+        {
+            string MACwithColons = "";
+            for (int i = 0; i < MacAddress.ToString().Length; i++)
+            {
+                MACwithColons = MACwithColons + MacAddress.ToString().Substring(i, 2) + ":";
+                i++;
+            }
+            MACwithColons = MACwithColons.Substring(0, MACwithColons.Length - 1);
+
+            return MACwithColons;
+        }
+
 
         private void lbl_DeviceList_Click(object sender, System.EventArgs e)
         {
