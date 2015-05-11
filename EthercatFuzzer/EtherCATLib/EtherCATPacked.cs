@@ -30,12 +30,12 @@ namespace EtherCATLib
                 {
                     Cmd=EtherCATHeaderList.CmdList.ElementAt(MainScreenData.SelectedCmd.GetValueOrDefault()).Code,
                     SlaveAddress=MainScreenData.SlaveAddress.GetValueOrDefault(),
-                    OffsetAddress=MainScreenData.OffsetAddress,
+                    OffsetAddress=MainScreenData.OffsetAddress.GetValueOrDefault(),
                 },
                 Data=MainScreenData.getDataAsByteArray()
             };
           
-            List<EtherCATDatagram> datagrams = MultiplexDatagram(datagram, MainScreenData.RepeatCount);
+            List<EtherCATDatagram> datagrams = MultiplexDatagram(datagram, MainScreenData.RepeatCount.GetValueOrDefault());
             Datagrams.AddRange(datagrams);
             
         }

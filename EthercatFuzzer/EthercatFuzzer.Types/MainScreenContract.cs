@@ -22,9 +22,9 @@ namespace EthercatFuzzer.Types
 
         //propfull yaz taba bas
         
-        private int repeatCount;
+        private int? repeatCount;
 
-        public int RepeatCount
+        public int? RepeatCount
         {
             get {
                 if (repeatCount == null)
@@ -63,9 +63,9 @@ namespace EthercatFuzzer.Types
             set { slaveAddress = value; }
         }
 
-        private short offsetAddress;   // karşı adress
+        private short? offsetAddress;   // karşı adress
 
-        public short OffsetAddress
+        public short ?OffsetAddress
         {
             get 
             {
@@ -121,7 +121,7 @@ namespace EthercatFuzzer.Types
 
             public static int RepeatCount()
             { 
-                return Convert.ToInt16((new Random()).Next(0,int.MaxValue));
+                return Convert.ToInt16((new Random()).Next(0, int.MaxValue));
             }
 
             public static short SlaveAdress()
