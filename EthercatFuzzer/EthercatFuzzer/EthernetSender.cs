@@ -14,8 +14,6 @@ namespace EthercatFuzzer
     //TODO Data nın ne olacağı ve DAtanın nasıl işleneceği ile alakalı çalışma yapmak lazım ilk testten sonra. datagramlar için
     class EthernetSender
     {
-        static public byte [] ethernetBytes= new byte[100];
-        static ByteArraySegment array = new ByteArraySegment(ethernetBytes);
         EthernetPacket ethernet;
         ICaptureDevice Selecteddev ;
 

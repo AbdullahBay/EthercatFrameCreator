@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
 namespace EthercatFuzzer.Types
 {
@@ -110,6 +111,15 @@ namespace EthercatFuzzer.Types
 
             set { data = value; }
         }
+        private PhysicalAddress sourceMac;
+
+        public PhysicalAddress SourceMac
+        {
+            get { return sourceMac; }
+            set { sourceMac = value; }
+        }
+        
+        
         
         //fixed abdullah: bu fonksiyo string olan datayı byte array olarak dönmeli
         /// <summary>
