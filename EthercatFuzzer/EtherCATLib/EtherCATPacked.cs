@@ -24,18 +24,9 @@ namespace EtherCATLib
         public EtherCATPacked(MainScreenContract MainScreenData)
         {
             // fixed abdullah: Complete member initialization
-            EtherCATDatagram datagram = new EtherCATDatagram()
-            {
-                Header = new DatagramHeader()
-                {
-                    Cmd=EtherCATHeaderList.CmdList.ElementAt(MainScreenData.SelectedCmd.GetValueOrDefault()).Code,
-                    SlaveAddress=MainScreenData.SlaveAddress.GetValueOrDefault(),
-                    OffsetAddress=MainScreenData.OffsetAddress.GetValueOrDefault(),
-                },
-                Data=MainScreenData.getDataAsByteArray()
-            };
+            
           
-            List<EtherCATDatagram> datagrams = MultiplexDatagram(datagram, MainScreenData.RepeatCount.GetValueOrDefault());
+            List<EtherCATDatagram> datagrams = MultiplexDatagram(MainScreenData);
             Datagrams.AddRange(datagrams);
             
         }
@@ -65,21 +56,33 @@ namespace EtherCATLib
             PrepareEthercatData();
 
         }
-        private List<EtherCATDatagram> MultiplexDatagram(EtherCATDatagram datagram, int repeatCount)
+        private List<EtherCATDatagram> MultiplexDatagram(MainScreenContract MainScreenData)
         {
             List<EtherCATDatagram> returnList = new List<EtherCATDatagram>();
-            for (int i = 0; i < repeatCount; i++)
+            int repCount = MainScreenData.RepeatCount.GetValueOrDefault();
+            for (int i = 0; i < repCount; i++)
             {
-                if (repeatCount - 1 != i)
+                EtherCATDatagram datagram = new EtherCATDatagram()
+                {
+                    Header = new DatagramHeader()
+                    {
+                        Cmd = EtherCATHeaderList.CmdList.ElementAt(MainScreenData.SelectedCmd.GetValueOrDefault()).Code,
+                        SlaveAddress = MainScreenData.SlaveAddress.GetValueOrDefault(),
+                        OffsetAddress = MainScreenData.OffsetAddress.GetValueOrDefault(),
+                    },
+                    Data = MainScreenData.getDataAsByteArray()
+                };
+                if (repCount - 1 != i)
                 {
                     datagram.Header.SetMore();
                 }
                 else
                 {
-                    //datagram.Header.More = 0;
+                    datagram.Header.More = 0;
                 }
                 returnList.Add(datagram);
             }
+          
             return returnList;
         }
 

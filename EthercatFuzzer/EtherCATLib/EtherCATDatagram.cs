@@ -8,7 +8,7 @@ namespace EtherCATLib
 {
     //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     
-    public class EtherCATDatagram
+    public class EtherCATDatagram :ICloneable
     {
         #region Constructor
         public EtherCATDatagram()
@@ -42,17 +42,28 @@ namespace EtherCATLib
                 Header.Len = Convert.ToInt16(data.Length);
             }
         }
+        private short wCount;
+
+        public short WCount
+        {
+            get { return wCount; }
+            set { wCount = value; }
+        }
+        
+        
+       
 
         #endregion Propert
         /// <summary>
         /// 10 bytelik dizi döndürür.
         /// </summary>
         /// <returns></returns>
-        #region Method
+        #region Method,
+       
         public byte[] GetBytes()
         {
            int DATALENGTH=Data.Length;
-           byte[] ReturnByteArray= new byte[DATALENGTH+10];
+           byte[] ReturnByteArray= new byte[DATALENGTH+12];
            byte[] tmp=Header.GetBytes();
            int index = 0;
             foreach (var item in tmp)
@@ -63,6 +74,9 @@ namespace EtherCATLib
             {
                 ReturnByteArray[index++] = Data[i] ;
             }
+            tmp = BitConverter.GetBytes(WCount);
+            ReturnByteArray[index++] = tmp[0];
+            ReturnByteArray[index++] = tmp[1];
            
            return ReturnByteArray;
 
@@ -76,10 +90,15 @@ namespace EtherCATLib
         public short Length { 
             get
             {
-                return BitConverter.GetBytes(HeaderLength + Data.Length)[0];
+                return BitConverter.GetBytes(HeaderLength + Data.Length+2)[0];
             }
         }
         #endregion Method
 
+
+        public object Clone()
+        {
+            return this.MemberwiseClone();
+        }
     }
 }
