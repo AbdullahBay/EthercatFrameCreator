@@ -4,10 +4,13 @@ using PacketDotNet;
 using System.Collections.Generic;
 using EthercatFuzzer.Types;
 using EthercatFuzzer.Types.FieldList;
+using System.Net.NetworkInformation;
+using System.Drawing;
+using SharpPcap;
 
 
 //TODO : Destination ve Source Adress "ethernet = new EthernetPacket(Selecteddev.MacAddress, new System.Net.NetworkInformation.PhysicalAddress(desMACBytes), EthernetPacketType.EtherCatProtocol);" tipinde gönderilecek
-//Fixed coskun : Destination ve Source Adress Boş bırakılamaz ve ele girilmesi gerekiyor.
+//Fixed coskun : Destination ve Source Adress Boş bırakılamaz ve elle girilmesi gerekiyor.
 namespace EthercatFuzzer
 {
     //Fixed coskun: forma uygun bir isim verilmeli : MainScreen olabilir.  
@@ -22,7 +25,7 @@ namespace EthercatFuzzer
         EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
-
+           
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;  //Forum boyutlarını sabitleme
 
             frame = new EthernetSender();
@@ -89,20 +92,56 @@ namespace EthercatFuzzer
             }
             else MessageBox.Show("Please select the device and write source or destination adress..");
 
-            
         }
 
 
-
+        ICaptureDevice SelectDevice;
         private void cmb_DeviceList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
-
+            SetDevice(cmb_DeviceList.SelectedIndex);
+            var macAdress = SelectDevice.MacAddress;
+            txt_SourceAdress.Text = macAdress.ToString();
         }
+
+        private void SetDevice(int selectedDeviceIndex)
+        {
+            // devivelerden kullandığını seçiliyor
+            SelectDevice = CaptureDeviceList.Instance[selectedDeviceIndex];
+            // kullanmak için aç
+            SelectDevice.Open();
+        }
+
 
         private void lbl_DeviceList_Click(object sender, System.EventArgs e)
         {
 
         }
+
+
+
+
+        //static string GetMacAddress()
+        //{
+        //    string macAddresses = "";
+        //    foreach (NetworkInterface nic in NetworkInterface.GetAllNetworkInterfaces())
+        //    {
+        //        // Only consider Ethernet network interfaces, thereby ignoring any
+        //        // loopback devices etc.
+        //        if (nic.NetworkInterfaceType != 
+        //            continue;
+        //        if (nic.OperationalStatus == OperationalStatus.Up)
+        //        {
+        //            macAddresses += nic.GetPhysicalAddress().ToString();
+        //            break;
+        //        }
+        //    }
+        //    return macAddresses;
+        //}
+
+
+
+
+
 
     }
 }

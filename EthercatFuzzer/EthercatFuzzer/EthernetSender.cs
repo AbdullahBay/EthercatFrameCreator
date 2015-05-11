@@ -7,6 +7,7 @@ using PacketDotNet;
 using PacketDotNet.Utils;
 using SharpPcap;
 using EtherCATLib;
+
 namespace EthercatFuzzer
 {
     //TODO: Bu sınıf soyutlanıp (sadece kedni işini yapar hale getirilipp) ethercat libe alınabilir diye düşünüyorum. işler bitince bakalım.
@@ -17,6 +18,7 @@ namespace EthercatFuzzer
         static ByteArraySegment array = new ByteArraySegment(ethernetBytes);
         EthernetPacket ethernet;
         ICaptureDevice Selecteddev ;
+
         public EthernetSender()
         {
             
