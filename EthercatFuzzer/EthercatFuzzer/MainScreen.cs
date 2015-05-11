@@ -9,10 +9,10 @@ using EthercatFuzzer.Types.FieldList;
 
 namespace EthercatFuzzer
 {
-    //TODO: forma uygun bir iism verilmeli :MainScreen olabilir.
-    public partial class Form1 : System.Windows.Forms.Form
+    //Fixed coskun: forma uygun bir isim verilmeli : MainScreen olabilir.  
+    public partial class MainScreen : System.Windows.Forms.Form
     {
-        public Form1()
+        public MainScreen()
         {
             InitializeComponent();
         }
@@ -21,6 +21,9 @@ namespace EthercatFuzzer
         EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
+
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;  //Forum boyutlarını sabitleme
+
             frame = new EthernetSender();
             List<string> deviceList = EthernetSender.getDeviceList();
             foreach (var item in deviceList)
@@ -28,18 +31,19 @@ namespace EthercatFuzzer
                 cmb_DeviceList.Items.Add(item);
             }
 
-
             List<CmdContract> CmdList = EtherCATHeaderList.CmdList;
             foreach (var item in CmdList)
             {
                 cmb_cmd.Items.Add(item.Name);
             }
         }
-        //TODO: device seçilmedi ise yada hiç yoksa gönder butonuna basınca uyarı verilecek
+        //Fixed coskun: device seçilmedi ise yada hiç yoksa gönder butonuna basınca uyarı verilecek
         private void button1_Click(object sender, System.EventArgs e)
         {
             
-            if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 ) 
+            //if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 )  // bütün boxların kontrolü
+            
+            if (cmb_DeviceList.Text != "")
             {
                 MainScreenContract MainScreenData = new MainScreenContract();
 
@@ -53,7 +57,7 @@ namespace EthercatFuzzer
 
                 try
                 {
-                    MainScreenData.DeviceList = cmb_DeviceList.SelectedIndex;        
+                    MainScreenData.SelectedDeviceIndex = cmb_DeviceList.SelectedIndex;        
                     MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text);
                     MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex;                                      
                     MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text);      
@@ -68,7 +72,7 @@ namespace EthercatFuzzer
                 //frame.Gonder(100, cmb_DeviceList.SelectedIndex);
 
             }
-            else MessageBox.Show("Empty boxes found!");
+            else MessageBox.Show("Please select the device..");
 
             
         }

@@ -10,10 +10,7 @@ namespace EthercatFuzzer.Types
     public class MainScreenContract
     {
         //TODO: randomu kontorol etmek için tüm alamnlar nullable yapılacak.  SelectedDeviceIndex hariç
-        public MainScreenContract()
-        {
-
-        }
+        public MainScreenContract() {}
         //null atanmış ise random olduğu anlaşılacak.
         private int? selectedCmd;
 
@@ -29,24 +26,38 @@ namespace EthercatFuzzer.Types
 
         public int RepeatCount
         {
-            get { return repeatCount; }
+            get {
+                if (repeatCount==null)
+                {
+                    return MyRandom.RepeatCount();
+                }
+                return repeatCount; 
+            }
             set { repeatCount = value; }
         }
         
 
-        private int deviceList;   //donanım listesi
-        //TODO: adı SelectedDeviceIndex olacak
-        public int DeviceList
+        private int? selectedDeviceIndex;   //donanım listesi
+        //Fixed coskun: adı SelectedDeviceIndex olacak
+        //"Boş bırakılamaz" durumu olduğundan random söz konusu değil
+        public int? SelectedDeviceIndex
         {
-            get { return deviceList; }
-            set { deviceList = value; }
+            get { return selectedDeviceIndex; }
+            set { selectedDeviceIndex = value; }
         }
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
         private short slaveAddress;   //alt adres
 
         public short SlaveAddress
         {
-            get { return slaveAddress; }
+            get {
+                if (slaveAddress == null)
+                {
+                    return MyRandom.SlaveAdress();
+                }
+                
+                return slaveAddress;
+            }
             set { slaveAddress = value; }
         }
 
@@ -70,11 +81,22 @@ namespace EthercatFuzzer.Types
 
         public string Data
         {
-            get { return data; }
+            get {
+                if (data == null) 
+                {
+                    //int intValue = MyRandom.Data();
+                    //byte[] intBytes = BitConverter.GetBytes(intValue);
+                    //Array.Reverse(intBytes);
+                    //byte[] result = intBytes;
+                   // bit array return yazılacak 
+                }
+                return data;
+                }
+
             set { data = value; }
         }
         
-        //TODO: bu fonksiyo string olan datayı byte aray olarak dönmeli
+        //TODO: bu fonksiyo string olan datayı byte array olarak dönmeli
         /// <summary>
         /// Data alanını byte array olarak döner
         /// </summary>
@@ -83,6 +105,7 @@ namespace EthercatFuzzer.Types
         {
             throw new NotImplementedException();
         }
+
         private static class MyRandom
         {
             // TODO Burada MainScreenContract ın tüm edeğişkenleri için random fonksiyon tanımlanacak
@@ -90,6 +113,21 @@ namespace EthercatFuzzer.Types
             public static short  OffsetAddress()
             {
                 return Convert.ToInt16((new Random()).Next(0,short.MaxValue));
+            }
+
+            public static int RepeatCount()
+            { 
+                return Convert.ToInt16((new Random()).Next(0,int.MaxValue));
+            }
+
+            public static short SlaveAdress()
+            {
+                return Convert.ToInt16((new Random()).Next(1000, 9999));
+            }
+
+            public static int Data()
+            {
+                return Convert.ToInt32((new Random()).Next(0, int.MaxValue));
             }
         }
     }
