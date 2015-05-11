@@ -78,7 +78,16 @@ namespace EthercatFuzzer
 
         internal void Prepare(Types.MainScreenContract MainScreenData)
         {
+            SetDevice(MainScreenData.SelectedDeviceIndex);
+            Prepare();
+            
             ethernet.PayloadData = new EtherCATPacked(MainScreenData).getBytes();
+            for (int i = 0; i < 100; i++)
+            {
+                Selecteddev.SendPacket(ethernet);
+            }
+            // gönderdikten sonra kapat
+            Selecteddev.Close();
         }
     }
 }

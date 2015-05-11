@@ -70,6 +70,14 @@ namespace EtherCATLib
             List<EtherCATDatagram> returnList = new List<EtherCATDatagram>();
             for (int i = 0; i < repeatCount; i++)
             {
+                if (repeatCount - 1 != i)
+                {
+                    datagram.Header.SetMore();
+                }
+                else
+                {
+                    //datagram.Header.More = 0;
+                }
                 returnList.Add(datagram);
             }
             return returnList;

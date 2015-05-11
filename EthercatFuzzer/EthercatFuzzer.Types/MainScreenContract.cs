@@ -121,7 +121,7 @@ namespace EthercatFuzzer.Types
 
             public static int RepeatCount()
             { 
-                return Convert.ToInt16((new Random()).Next(0, int.MaxValue));
+                return Convert.ToInt16((new Random()).Next(0, 100));
             }
 
             public static short SlaveAdress()

@@ -84,7 +84,7 @@ namespace EthercatFuzzer
                 frame.Prepare(MainScreenData);
                
 
-                frame.Gonder(100, cmb_DeviceList.SelectedIndex);
+              //  frame.Gonder(100, cmb_DeviceList.SelectedIndex);
 
             }
             else MessageBox.Show("Please select the device..");
