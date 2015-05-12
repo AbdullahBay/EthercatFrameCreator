@@ -15,10 +15,8 @@ namespace EthercatFuzzer.Types
         public MainScreenContract() {}
         //null atanmış ise random olduğu anlaşılacak.
 
-        
          
-        private int? selectedCmd;
-        //Fixed coskun : Index üzerinden random değer atanılacak. 
+        private int? selectedCmd; //Fixed coskun : Index üzerinden random değer atanılacak. 
         public int? SelectedCmd
         {
             get {
@@ -35,7 +33,6 @@ namespace EthercatFuzzer.Types
         //propfull yaz taba bas
         
         private int? repeatCount;
-
         public int? RepeatCount
         {
             get {
@@ -60,8 +57,6 @@ namespace EthercatFuzzer.Types
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
 
         private short? slaveAddress;   //alt adres
-
-
         public short? SlaveAddress
         {
             get {
@@ -76,7 +71,6 @@ namespace EthercatFuzzer.Types
         }
 
         private short? offsetAddress;   // karşı adress
-
         public short ?OffsetAddress
         {
             get 
@@ -92,7 +86,6 @@ namespace EthercatFuzzer.Types
         }
 
         private string data;    //gönderilecek bilgi
-
         public string Data
         {
             get {
@@ -104,21 +97,29 @@ namespace EthercatFuzzer.Types
                     //Array.Reverse(intBytes);
                     //byte[] result = intBytes;
                    // bit array return yazılacak 
-                    return "asasd";
+                    return "asasd123";
                 }
                 return data;
                 }
 
             set { data = value; }
         }
-        private PhysicalAddress sourceMac;
 
+
+        private PhysicalAddress sourceMac;
         public PhysicalAddress SourceMac
         {
             get { return sourceMac; }
             set { sourceMac = value; }
         }
-        
+
+
+        private PhysicalAddress destinationMac;
+        public PhysicalAddress DestinationMac
+        {
+            get { return destinationMac; }
+            set { destinationMac = value; }
+        }
         
         
         //fixed abdullah: bu fonksiyo string olan datayı byte array olarak dönmeli

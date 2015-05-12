@@ -10,7 +10,7 @@ using SharpPcap;
 using System.Globalization;
 
 
-//TODO : Destination ve Source Adress "ethernet = new EthernetPacket(Selecteddev.MacAddress, new System.Net.NetworkInformation.PhysicalAddress(desMACBytes), EthernetPacketType.EtherCatProtocol);" tipinde gönderilecek
+//Fixed coskun: Destination ve Source Adress "PhysicalAddress(desMACBytes)" tipinde gönderilecek
 //Fixed coskun : Destination ve Source Adress Boş bırakılamaz ve elle girilmesi gerekiyor.
 namespace EthercatFuzzer
 {
@@ -22,7 +22,6 @@ namespace EthercatFuzzer
             InitializeComponent();
         }
 
-       
         EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
@@ -47,56 +46,69 @@ namespace EthercatFuzzer
         private void button1_Click(object sender, System.EventArgs e)
         {
             
-            //if (txt_RCount.Text != "" && cmb_DeviceList.Text != "" && cmb_cmd.Text != "" && txt_OAddress.Text != "" && richtxt_data.Text != "" && txt_OAddress.Text.Length == 4 && richtxt_data.Text.Length <= 100 && txt_SAddress.Text.Length == 4 )  // bütün boxların kontrolü
-            
             if (cmb_DeviceList.Text != "" && txt_DestinationAdress.Text != "" && txt_SourceAdress.Text != "")
             {
                 MainScreenContract MainScreenData = new MainScreenContract();
                 
-                ////IP adres Konrolü
-                //try{
-                //    System.Net.IPAddress Slave_Address = System.Net.IPAddress.Parse(txt_SAddress.Text); // adresin parse edilmesi
-                //    MainScreenData.SlaveAddress = Slave_Address.ToString(); // IP Adresinin gönderidiği yer
-                //    //MessageBox.Show(Slave_Address.ToString());
-                //    }
-                //catch (FormatException) {MessageBox.Show("Wrong IP!");}
-
                 try
                 {
-                   
                     MainScreenData.SelectedDeviceIndex = cmb_DeviceList.SelectedIndex;
+
+                    SetDevice(cmb_DeviceList.SelectedIndex);
+                    var S_macAddress            = SelectDevice.MacAddress;
+                    var S_MACBytes              = S_macAddress.GetAddressBytes();
+                    MainScreenData.SourceMac    = new PhysicalAddress(S_MACBytes);
+                    SelectDevice.Close();
+
+                    string DestMac        = txt_DestinationAdress.Text;
+                    string Clear_DestMac  = DestMac.Replace(":", "");
+                    string Clear_DestMac2 = Clear_DestMac.Replace(".", "");
+                    MainScreenData.DestinationMac = StrictParseAddress(Clear_DestMac2);
+
                     
-                    if (txt_RCount.Text == "") { MainScreenData.RepeatCount = null; }
-                    else { MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text); }
+                    if (txt_RCount.Text == "")    { MainScreenData.RepeatCount = null; }
+                    else                          { MainScreenData.RepeatCount = Convert.ToInt32(txt_RCount.Text); }
 
-                    if (cmb_cmd.Text == "") { MainScreenData.SelectedCmd = null; } 
-                    else { MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex; }
+                    if (cmb_cmd.Text == "")       { MainScreenData.SelectedCmd = null; } 
+                    else                          { MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex; }
 
-                    if (txt_SAddress.Text == "") { MainScreenData.SlaveAddress = null; }
-                    else { MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text); }
+                    if (txt_SAddress.Text == "")  { MainScreenData.SlaveAddress = null; }
+                    else                          { MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text); }
 
-                    if (txt_OAddress.Text == "") { MainScreenData.OffsetAddress = null; }
-                    else { MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text); }
+                    if (txt_OAddress.Text == "")  { MainScreenData.OffsetAddress = null; }
+                    else                          { MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text); }
 
-                    if (richtxt_data.Text == "") {  MainScreenData.Data =null; }
-                    else { MainScreenData.Data = richtxt_data.Text; }      
-                    
+                    if (richtxt_data.Text == "")  {  MainScreenData.Data = null; }
+                    else                          { MainScreenData.Data = richtxt_data.Text; }      
+
                 }
                 catch (Exception Ex) { MessageBox.Show(" Error :  " + Ex.Message); }
 
                 // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
                 frame.Prepare(MainScreenData);
             }
-            else MessageBox.Show("Please select the device and write source or destination adress..");
+            else MessageBox.Show("Please select the device and write source or destination address..");
 
         }
 
-        //TODO : Mac adresileri istenilen türe çevirilerek gönderilecek
+
+        public static PhysicalAddress StrictParseAddress(string address)
+        {
+            PhysicalAddress newAddress = PhysicalAddress.Parse(address);
+            if (PhysicalAddress.None.Equals(newAddress))
+                return null;
+
+            return newAddress;
+        }
+
+        //Fixed coskun : Mac adresileri istenilen türe çevirilerek gönderilecek
+        
         ICaptureDevice SelectDevice;
         private void cmb_DeviceList_SelectedIndexChanged(object sender, System.EventArgs e)
         {
             SetDevice(cmb_DeviceList.SelectedIndex);
             var macAdress = SelectDevice.MacAddress;
+            
             //txt_SourceAdress.Text = macAdress.ToString();
             txt_SourceAdress.Text = MacAddressParse(macAdress.ToString());
         }
@@ -124,9 +136,28 @@ namespace EthercatFuzzer
         }
 
 
-        private void lbl_DeviceList_Click(object sender, System.EventArgs e)
+        private void txt_DestinationAdress_TextChanged(object sender, EventArgs e)
         {
+            txt_DestinationAdress.BackColor = Color.OrangeRed;
+            if (txt_DestinationAdress.Text.Length == 17)
+            {
+                txt_DestinationAdress.BackColor = Color.LightGreen;
+            }
+        }
 
+        private void txt_SAddress_TextChanged(object sender, EventArgs e)
+        {
+            txt_SAddress.BackColor = Color.OrangeRed;
+            if (txt_SAddress.Text.Length == 4)
+            { txt_SAddress.BackColor = Color.LightGreen; }
+            //else if (txt_OAddress.Text.Length != 4) { MessageBox.Show("Slave address must be 4 digits."); }
+        }
+
+        private void txt_OAddress_TextChanged(object sender, EventArgs e)
+        {
+            txt_OAddress.BackColor = Color.OrangeRed;
+            if (txt_OAddress.Text.Length == 4) {txt_OAddress.BackColor = Color.LightGreen;}
+            //else if (txt_OAddress.Text.Length != 4) { MessageBox.Show("Offset address must be 4 digits."); }
         }
 
 
@@ -151,7 +182,7 @@ namespace EthercatFuzzer
         //}
 
 
-
+       
 
 
 
