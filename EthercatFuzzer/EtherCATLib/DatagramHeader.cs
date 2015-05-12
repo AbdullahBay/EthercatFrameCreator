@@ -114,7 +114,7 @@ namespace EtherCATLib
         {
 
         }
-        public DatagramHeader(byte Cmd,byte Idx,Int16 SlaveAddress, Int16 OffsetAddress,byte Len, byte Res,byte Cr, byte More,byte Irq)
+        /*public DatagramHeader(byte Cmd,byte Idx,Int16 SlaveAddress, Int16 OffsetAddress,byte Len, byte Res,byte Cr, byte More,byte Irq)
 
         {
             this.Cmd = Cmd;
@@ -127,7 +127,7 @@ namespace EtherCATLib
             this.More = More;
             this.Irq = Irq;
 
-        }
+        }*/
         #endregion Constructor
 
         #region Method
@@ -157,7 +157,7 @@ namespace EtherCATLib
                 returnByteArray[4] = tempByteArray[0]; 
                 returnByteArray[5] = tempByteArray[1];
             //TODO: bu satırda hata mı var. moor çalışmıyor
-            Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.forteen + More * TwoPow.fiveteen;
+            Int32 headerasint = Len + Res * TwoPow.eleven + Cr * TwoPow.forteen + More * (TwoPow.fiveteen+1);
             tempByteArray = BitConverter.GetBytes(headerasint);
                 returnByteArray[6] = tempByteArray[0];
                 returnByteArray[7] = tempByteArray[1];

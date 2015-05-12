@@ -34,6 +34,10 @@ namespace EthercatFuzzer
             {
                 cmb_DeviceList.Items.Add(item);
             }
+            if (deviceList.Count!=0)
+            {
+                cmb_DeviceList.SelectedIndex = 0;   
+            }
 
             List<CmdContract> CmdList = EtherCATHeaderList.CmdList;
             foreach (var item in CmdList)
@@ -111,6 +115,7 @@ namespace EthercatFuzzer
             
             //txt_SourceAdress.Text = macAdress.ToString();
             txt_SourceAdress.Text = MacAddressParse(macAdress.ToString());
+            txt_DestinationAdress.Text = MacAddressParse(macAdress.ToString());
         }
 
         private void SetDevice(int selectedDeviceIndex)
