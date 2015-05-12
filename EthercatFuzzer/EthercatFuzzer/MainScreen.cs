@@ -25,7 +25,7 @@ namespace EthercatFuzzer
         EthernetSender frame;
         private void Form1_Load(object sender, System.EventArgs e)
         {
-            txt_SourceAdress.Enabled = false;
+            
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;  //Forum boyutlarını sabitleme
 
             frame = new EthernetSender();
