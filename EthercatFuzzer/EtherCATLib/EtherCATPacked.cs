@@ -69,6 +69,7 @@ namespace EtherCATLib
                         Cmd = EtherCATHeaderList.CmdList.ElementAt(MainScreenData.SelectedCmd.GetValueOrDefault()).Code,
                         SlaveAddress = MainScreenData.SlaveAddress.GetValueOrDefault(),
                         OffsetAddress = MainScreenData.OffsetAddress.GetValueOrDefault(),
+                        Idx=BitConverter.GetBytes(i)[0]
                     },
                     Data = MainScreenData.getDataAsByteArray()
                 };

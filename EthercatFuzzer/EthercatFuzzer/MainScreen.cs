@@ -81,7 +81,7 @@ namespace EthercatFuzzer
                 catch (Exception Ex) { MessageBox.Show(" Error :  " + Ex.Message); }
 
                 // fixed abdullah: Contracktın gönderileceği gonksiyon yaılacak
-                // frame.Prepare(MainScreenData);
+                frame.Prepare(MainScreenData);
                
 
               //  frame.Gonder(100, cmb_DeviceList.SelectedIndex);

@@ -79,7 +79,7 @@ namespace EthercatFuzzer
             PrepareMac();
             var ethercatPacked= new EtherCATPacked(MainScreenData);
             ethernet.PayloadData = ethercatPacked.getBytes();
-            for (int i = 0; i < 100; i++)
+            for (int i = 1; i < 20; i++)
             {
                 Selecteddev.SendPacket(ethernet);
             }

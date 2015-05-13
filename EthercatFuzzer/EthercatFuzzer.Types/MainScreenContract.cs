@@ -104,7 +104,7 @@ namespace EthercatFuzzer.Types
                     //Array.Reverse(intBytes);
                     //byte[] result = intBytes;
                    // bit array return yazılacak 
-                    return "asasd";
+                    return "asdfghjsdfg";
                 }
                 return data;
                 }
