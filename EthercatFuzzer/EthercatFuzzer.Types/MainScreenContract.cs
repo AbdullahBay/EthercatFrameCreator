@@ -4,21 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.NetworkInformation;
 
 namespace EthercatFuzzer.Types
 {
     //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     public class MainScreenContract
     {
-        //TODO: randomu kontorol etmek için tüm alamnlar nullable yapılacak.  SelectedDeviceIndex hariç
+        //Fixed coskun: randomu kontorol etmek için tüm alamnlar nullable yapılacak.  SelectedDeviceIndex hariç
         public MainScreenContract() {}
         //null atanmış ise random olduğu anlaşılacak.
 
-        
          
-        private int? selectedCmd;
-
-        //TODO : Index üzerinden random değer atanılacak. 
+        private int? selectedCmd; //Fixed coskun : Index üzerinden random değer atanılacak. 
         public int? SelectedCmd
         {
             get {
@@ -60,8 +58,6 @@ namespace EthercatFuzzer.Types
         //fixed abdullah: Slave adres  ve offset tipi shorta çevirilecek
 
         private short? slaveAddress;   //alt adres
-
-
         public short? SlaveAddress
         {
             get {
@@ -76,7 +72,6 @@ namespace EthercatFuzzer.Types
         }
 
         private short? offsetAddress;   // karşı adress
-
         public short ?OffsetAddress
         {
             get 
@@ -92,7 +87,6 @@ namespace EthercatFuzzer.Types
         }
 
         private string data;    //gönderilecek bilgi
-
         public string Data
         {
             get {
@@ -104,13 +98,30 @@ namespace EthercatFuzzer.Types
                     //Array.Reverse(intBytes);
                     //byte[] result = intBytes;
                    // bit array return yazılacak 
-                    return "asdfghjsdfg";
+                    return "asasd123";
                 }
                 return data;
                 }
 
             set { data = value; }
         }
+
+
+        private PhysicalAddress sourceMac;
+        public PhysicalAddress SourceMac
+        {
+            get { return sourceMac; }
+            set { sourceMac = value; }
+        }
+
+
+        private PhysicalAddress destinationMac;
+        public PhysicalAddress DestinationMac
+        {
+            get { return destinationMac; }
+            set { destinationMac = value; }
+        }
+        
         
         //fixed abdullah: bu fonksiyo string olan datayı byte array olarak dönmeli
         /// <summary>
@@ -124,7 +135,7 @@ namespace EthercatFuzzer.Types
 
         private static class MyRandom
         {
-            // TODO Burada MainScreenContract ın tüm edeğişkenleri için random fonksiyon tanımlanacak
+            // Fixed coskun :  Burada MainScreenContract ın tüm edeğişkenleri için random fonksiyon tanımlanacak
             // MainScreenContract get inde kullanılacak
             public static short  OffsetAddress()
             {
@@ -141,10 +152,10 @@ namespace EthercatFuzzer.Types
                 return Convert.ToInt16((new Random()).Next(1000, 9999));
             }
 
-            public static int Data()
-            {
-                return Convert.ToInt32((new Random()).Next(0, int.MaxValue));
-            }
+            //public static int Data()
+            //{
+            //    return Convert.ToInt32((new Random()).Next(0, int.MaxValue));
+            //}
            
             public static int SelectedCmd()
             {

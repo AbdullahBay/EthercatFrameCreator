@@ -8,7 +8,7 @@ namespace EtherCATLib
 {
     //TODO: yapıya uygun hale getir örn DatagramHeader.cs Propert Method Constructor
     
-    public class EtherCATDatagram :ICloneable
+    public class EtherCATDatagram 
     {
         #region Constructor
         public EtherCATDatagram()
@@ -96,9 +96,5 @@ namespace EtherCATLib
         #endregion Method
 
 
-        public object Clone()
-        {
-            return this.MemberwiseClone();
-        }
     }
 }

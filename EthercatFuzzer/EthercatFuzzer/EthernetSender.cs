@@ -7,22 +7,23 @@ using PacketDotNet;
 using PacketDotNet.Utils;
 using SharpPcap;
 using EtherCATLib;
+using System.Net.NetworkInformation;
+
 namespace EthercatFuzzer
 {
     //TODO: Bu sınıf soyutlanıp (sadece kedni işini yapar hale getirilipp) ethercat libe alınabilir diye düşünüyorum. işler bitince bakalım.
     //TODO Data nın ne olacağı ve DAtanın nasıl işleneceği ile alakalı çalışma yapmak lazım ilk testten sonra. datagramlar için
     class EthernetSender
     {
-        static public byte [] ethernetBytes= new byte[100];
-        static ByteArraySegment array = new ByteArraySegment(ethernetBytes);
         EthernetPacket ethernet;
         ICaptureDevice Selecteddev ;
+
         public EthernetSender()
         {
             
         }
 
-        internal void Gonder(int kacKez, int selectedDeviceIndex  )
+        /*internal void Gonder(int kacKez, int selectedDeviceIndex  )
         {
             SetDevice(selectedDeviceIndex);
             PrepareMac();
@@ -34,17 +35,13 @@ namespace EthercatFuzzer
             }
             // gönderdikten sonra kapat
             Selecteddev.Close();
-        }
+        }*/
 
-        private void PrepareMac()
+        private void PrepareMac(PhysicalAddress SourceMac, PhysicalAddress DestinationMac)
         {
-            // hedef mec oluştur son byteyi değiştiriyor:19
-            var desMAC = Selecteddev.MacAddress;
-            var desMACBytes = desMAC.GetAddressBytes();
-            desMACBytes[5] = 19;
-            //paketi oluştur
+            
             //System.Net.NetworkInformation.PhysicalAddress destmac = new System.Net.NetworkInformation.PhysicalAddress(desMACBytes);
-            ethernet = new EthernetPacket(Selecteddev.MacAddress, new System.Net.NetworkInformation.PhysicalAddress(desMACBytes), EthernetPacketType.EtherCatProtocol);
+            ethernet = new EthernetPacket(SourceMac, DestinationMac, EthernetPacketType.EtherCatProtocol);
             
             // datayı pakete ekle
 
@@ -76,7 +73,7 @@ namespace EthercatFuzzer
         internal void Prepare(Types.MainScreenContract MainScreenData)
         {
             SetDevice(MainScreenData.SelectedDeviceIndex);
-            PrepareMac();
+            PrepareMac(MainScreenData.SourceMac,MainScreenData.DestinationMac);
             var ethercatPacked= new EtherCATPacked(MainScreenData);
             ethernet.PayloadData = ethercatPacked.getBytes();
             for (int i = 1; i < 20; i++)
@@ -86,5 +83,6 @@ namespace EthercatFuzzer
             // gönderdikten sonra kapat
             Selecteddev.Close();
         }
+
     }
 }
