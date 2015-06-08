@@ -77,10 +77,10 @@ namespace EthercatFuzzer
                     else                          { MainScreenData.SelectedCmd = cmb_cmd.SelectedIndex; }
 
                     if (txt_SAddress.Text == "")  { MainScreenData.SlaveAddress = null; }
-                    else                          { MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text); }
+                    else                          { MainScreenData.SlaveAddress = Convert.ToInt16(txt_SAddress.Text,16); }
 
                     if (txt_OAddress.Text == "")  { MainScreenData.OffsetAddress = null; }
-                    else                          { MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text); }
+                    else                          { MainScreenData.OffsetAddress = Convert.ToInt16(txt_OAddress.Text,16); }
 
                     if (richtxt_data.Text == "")  {  MainScreenData.Data = null; }
                     else                          { MainScreenData.Data = richtxt_data.Text; }      
